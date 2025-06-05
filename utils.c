@@ -1,32 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ruida-si <ruida-si@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/31 15:18:42 by ruida-si          #+#    #+#             */
-/*   Updated: 2025/06/05 19:03:04 by ruida-si         ###   ########.fr       */
+/*   Created: 2025/06/05 15:46:31 by ruida-si          #+#    #+#             */
+/*   Updated: 2025/06/05 16:02:46 by ruida-si         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minilibx-linux/mlx.h"
 #include "cub3d.h"
 
-int map[5][5] =
+double	degree_to_rad(double degree)
 {
-	{1, 1, 1, 1, 1},
-	{1, 0, 1, 0, 1},
-	{1, 0, 0, 0, 1},
-	{1, 0, 0, 0, 1},
-	{1, 1, 1, 1, 1}
-};
+	double	rad;
 
-int	main(void)
-{
-	t_cub	cub;
-
-//	innit_display(&cub);
-	raycast(&cub);
-	return (0);
+	rad = degree * (PI / 180);
+	return (rad);
 }
