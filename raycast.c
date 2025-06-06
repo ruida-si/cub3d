@@ -6,7 +6,7 @@
 /*   By: ruida-si <ruida-si@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/05 14:15:20 by ruida-si          #+#    #+#             */
-/*   Updated: 2025/06/06 18:58:05 by ruida-si         ###   ########.fr       */
+/*   Updated: 2025/06/06 19:29:35 by ruida-si         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,9 +67,9 @@ void	apply_dda(t_ray *ray, t_player *player)
 			break ;
 	}
 	if (side == 0)
-		ray->wall_dist = (map_x - player->pos_x + (1 - ray->step_x) / 2) / ray->raydir_x;
+		ray->wall_dist = (map_x - player->pos_x + (1 - ray->step_x) / 2.0) / ray->raydir_x;
 	else
-		ray->wall_dist = (map_y - player->pos_y + (1 - ray->step_y) / 2) / ray->raydir_y;
+		ray->wall_dist = (map_y - player->pos_y + (1 - ray->step_y) / 2.0) / ray->raydir_y;
 	printf("walldist = %f\n", ray->wall_dist);	
 }
 
@@ -99,8 +99,8 @@ void	innit_ray(t_ray *ray, t_player *player, int map_x, int map_y)
 
 void	innit_player(t_player *player)
 {
-	player->pos_x = 1.5;
-	player->pos_y = 1.5;
+	player->pos_x = 2.5;
+	player->pos_y = 2.5;
 	player->dir_x = 0.0;
 	player->dir_y = 1.0;
 }

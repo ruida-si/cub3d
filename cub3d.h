@@ -6,7 +6,7 @@
 /*   By: ruida-si <ruida-si@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/02 15:02:27 by ruida-si          #+#    #+#             */
-/*   Updated: 2025/06/06 18:41:11 by ruida-si         ###   ########.fr       */
+/*   Updated: 2025/06/06 19:27:57 by ruida-si         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 extern int map[5][5];
 
 # define PI 3.1415926535897932384
-# define FOV 60
+# define FOV 60.0
 
 # include <stdlib.h>
 # include <stdio.h>
