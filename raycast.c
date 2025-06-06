@@ -6,7 +6,7 @@
 /*   By: ruida-si <ruida-si@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/05 14:15:20 by ruida-si          #+#    #+#             */
-/*   Updated: 2025/06/05 19:48:59 by ruida-si         ###   ########.fr       */
+/*   Updated: 2025/06/06 18:58:05 by ruida-si         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,15 +22,17 @@ void	raycast(t_cub *cub)
 	int			x;
 	t_player	player;
 	t_ray		ray;
+	double		deg_step;
 
+	cub->max_width = 1920;
 	x = 0;
 	innit_player(&player);
-	double	deg_step = 60 / (cub->max_width - 1);
-	while (x < cub->max_height)
+	deg_step = FOV / (cub->max_width - 1);
+	while (x < cub->max_width)
 	{
-		double angle = 120 - (x * deg_step);
-		ray.raydir_x = cos(degree_to_rad(angle));
-		ray.raydir_y = sin(degree_to_rad(angle));		
+		ray.angle = (90 + (FOV / 2)) - (x * deg_step);
+		ray.raydir_x = cos(degree_to_rad(ray.angle));
+		ray.raydir_y = sin(degree_to_rad(ray.angle));
 		ray.dist_x = fabs(1 / ray.raydir_x);
 		ray.dist_y = fabs(1 / ray.raydir_y);
 		apply_dda(&ray, &player);
@@ -59,12 +61,16 @@ void	apply_dda(t_ray *ray, t_player *player)
 		{
 			ray->f_dist_y += ray->dist_y;
 			map_y += ray->step_y;
-			side = 1;			
+			side = 1;
 		}
-		if (map[map_x][map_y] == '1')
+		if (map[map_y][map_x] == 1)
 			break ;
 	}
-	printf("x dist = %f, y dist = %f\n", ray->step_x, ray->step_y);
+	if (side == 0)
+		ray->wall_dist = (map_x - player->pos_x + (1 - ray->step_x) / 2) / ray->raydir_x;
+	else
+		ray->wall_dist = (map_y - player->pos_y + (1 - ray->step_y) / 2) / ray->raydir_y;
+	printf("walldist = %f\n", ray->wall_dist);	
 }
 
 void	innit_ray(t_ray *ray, t_player *player, int map_x, int map_y)
@@ -93,8 +99,8 @@ void	innit_ray(t_ray *ray, t_player *player, int map_x, int map_y)
 
 void	innit_player(t_player *player)
 {
-	player->pos_x = 2.5;
-	player->pos_y = 2.5;
+	player->pos_x = 1.5;
+	player->pos_y = 1.5;
 	player->dir_x = 0.0;
 	player->dir_y = 1.0;
 }

@@ -6,7 +6,7 @@
 /*   By: ruida-si <ruida-si@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/02 15:02:27 by ruida-si          #+#    #+#             */
-/*   Updated: 2025/06/05 19:40:01 by ruida-si         ###   ########.fr       */
+/*   Updated: 2025/06/06 18:41:11 by ruida-si         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 extern int map[5][5];
 
 # define PI 3.1415926535897932384
+# define FOV 60
 
 # include <stdlib.h>
 # include <stdio.h>
@@ -52,6 +53,8 @@ typedef struct s_ray
 	double	f_dist_y;
 	double	step_x;
 	double	step_y;
+	double	angle;
+	double	wall_dist;
 }	t_ray;
 
 void	innit_display(t_cub *cub);
