@@ -1,31 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   render.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ruida-si <ruida-si@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/31 15:18:42 by ruida-si          #+#    #+#             */
-/*   Updated: 2025/06/10 18:45:18 by ruida-si         ###   ########.fr       */
+/*   Created: 2025/06/10 18:35:24 by ruida-si          #+#    #+#             */
+/*   Updated: 2025/06/10 18:58:15 by ruida-si         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minilibx-linux/mlx.h"
 #include "cub3d.h"
 
-int map[5][5] =
+void	ft_draw_image(t_ray *ray, t_cub *cub)
 {
-	{1, 1, 1, 1, 1},
-	{1, 0, 1, 0, 1},
-	{1, 0, 0, 0, 1},
-	{1, 0, 0, 0, 1},
-	{1, 1, 1, 1, 1}
-};
-
-int	main(void)
-{
-	t_cub	cub;
-
-	innit_display(&cub);	
-	return (0);
+	static int i;
+	(void)ray;
+	
+	int line_height = 1000 / 10;
+	printf("line height = %i\n", line_height);
+	int start = cub->max_height / 2 - line_height / 2;
+	if (start < 0)
+		start = 0;
+	int end = cub->max_height / 2 + line_height / 2;
+	if (end > cub->max_height -1)
+		end = cub->max_height -1;
+	while (start <= end)
+	{
+		cub->img_data[start * cub->max_width + i] = 0x0000FF;
+		start++;
+	}
+	i++;
 }

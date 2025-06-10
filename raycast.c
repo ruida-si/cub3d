@@ -6,14 +6,14 @@
 /*   By: ruida-si <ruida-si@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/05 14:15:20 by ruida-si          #+#    #+#             */
-/*   Updated: 2025/06/06 19:29:35 by ruida-si         ###   ########.fr       */
+/*   Updated: 2025/06/10 18:52:53 by ruida-si         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minilibx-linux/mlx.h"
 #include "cub3d.h"
 
-void	apply_dda(t_ray *ray, t_player *player);
+void	apply_dda(t_ray *ray, t_player *player, t_cub *cub);
 void	innit_player(t_player *player);
 void	innit_ray(t_ray *ray, t_player *player, int map_x, int map_y);
 
@@ -30,17 +30,17 @@ void	raycast(t_cub *cub)
 	deg_step = FOV / (cub->max_width - 1);
 	while (x < cub->max_width)
 	{
-		ray.angle = (90 + (FOV / 2)) - (x * deg_step);
+		ray.angle = (45 + (FOV / 2)) - (x * deg_step);
 		ray.raydir_x = cos(degree_to_rad(ray.angle));
 		ray.raydir_y = sin(degree_to_rad(ray.angle));
 		ray.dist_x = fabs(1 / ray.raydir_x);
 		ray.dist_y = fabs(1 / ray.raydir_y);
-		apply_dda(&ray, &player);
+		apply_dda(&ray, &player, cub);
 		x++;
 	}
 }
 
-void	apply_dda(t_ray *ray, t_player *player)
+void	apply_dda(t_ray *ray, t_player *player, t_cub *cub)
 {
 	int	map_x;
 	int	map_y;
@@ -67,10 +67,16 @@ void	apply_dda(t_ray *ray, t_player *player)
 			break ;
 	}
 	if (side == 0)
-		ray->wall_dist = (map_x - player->pos_x + (1 - ray->step_x) / 2.0) / ray->raydir_x;
+	{
+		ray->f_dist_x -= ray->dist_x;
+		ray->wall_dist = ray->f_dist_x;
+	}
 	else
-		ray->wall_dist = (map_y - player->pos_y + (1 - ray->step_y) / 2.0) / ray->raydir_y;
-	printf("walldist = %f\n", ray->wall_dist);	
+	{
+		ray->f_dist_y -= ray->dist_y;
+		ray->wall_dist = ray->f_dist_y;
+	}
+	ft_draw_image(ray, cub);
 }
 
 void	innit_ray(t_ray *ray, t_player *player, int map_x, int map_y)
@@ -87,13 +93,13 @@ void	innit_ray(t_ray *ray, t_player *player, int map_x, int map_y)
 	}
 	if (ray->raydir_y < 0)
 	{
-		ray->step_y = -1;
-		ray->f_dist_y = (player->pos_y - map_y) * ray->dist_y;
+		ray->step_y = 1;
+		ray->f_dist_y = (map_y + 1 - player->pos_y) * ray->dist_y;
 	}
 	else
 	{
-		ray->step_y = 1;
-		ray->f_dist_y = (map_y + 1 - player->pos_y) * ray->dist_y;
+		ray->step_y = -1;
+		ray->f_dist_y = (player->pos_y - map_y) * ray->dist_y;
 	}
 }
 

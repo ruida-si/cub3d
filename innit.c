@@ -6,7 +6,7 @@
 /*   By: ruida-si <ruida-si@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/03 14:53:31 by ruida-si          #+#    #+#             */
-/*   Updated: 2025/06/05 13:29:56 by ruida-si         ###   ########.fr       */
+/*   Updated: 2025/06/10 18:45:46 by ruida-si         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,8 @@ void	innit_display(t_cub *cub)
 	cub->win = mlx_new_window(cub->mlx, cub->max_width, cub->max_height, "cub3D");
 	cub->img = mlx_new_image(cub->mlx, cub->max_width, cub->max_height);
 	cub->img_data = (int *)mlx_get_data_addr(cub->img, &cub->bpp, &cub->size_line, &cub->endian);
-	fill_image(cub->img_data, cub);	
+	fill_image(cub->img_data, cub);
+	raycast(cub);
 	mlx_put_image_to_window(cub->mlx, cub->win, cub->img, 0, 0);
 	mlx_key_hook(cub->win, key_handler, &cub);
 	mlx_hook(cub->win, 17, 0, close_event, &cub);
