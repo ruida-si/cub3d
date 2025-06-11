@@ -6,7 +6,7 @@
 /*   By: ruida-si <ruida-si@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/10 18:35:24 by ruida-si          #+#    #+#             */
-/*   Updated: 2025/06/10 18:58:15 by ruida-si         ###   ########.fr       */
+/*   Updated: 2025/06/11 17:19:43 by ruida-si         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,9 @@
 void	ft_draw_image(t_ray *ray, t_cub *cub)
 {
 	static int i;
-	(void)ray;
 	
-	int line_height = 1000 / 10;
+	int line_height = 800 * (1 - (ray->wall_dist / 5.0));
+	printf("wall dist = %f\n", ray->wall_dist);
 	printf("line height = %i\n", line_height);
 	int start = cub->max_height / 2 - line_height / 2;
 	if (start < 0)

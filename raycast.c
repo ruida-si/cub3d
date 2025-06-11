@@ -6,7 +6,7 @@
 /*   By: ruida-si <ruida-si@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/05 14:15:20 by ruida-si          #+#    #+#             */
-/*   Updated: 2025/06/10 18:52:53 by ruida-si         ###   ########.fr       */
+/*   Updated: 2025/06/11 18:17:27 by ruida-si         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void	raycast(t_cub *cub)
 	deg_step = FOV / (cub->max_width - 1);
 	while (x < cub->max_width)
 	{
-		ray.angle = (45 + (FOV / 2)) - (x * deg_step);
+		ray.angle = (player.angle + (FOV / 2)) - (x * deg_step);
 		ray.raydir_x = cos(degree_to_rad(ray.angle));
 		ray.raydir_y = sin(degree_to_rad(ray.angle));
 		ray.dist_x = fabs(1 / ray.raydir_x);
@@ -69,12 +69,12 @@ void	apply_dda(t_ray *ray, t_player *player, t_cub *cub)
 	if (side == 0)
 	{
 		ray->f_dist_x -= ray->dist_x;
-		ray->wall_dist = ray->f_dist_x;
+		ray->wall_dist = ray->f_dist_x * cos(degree_to_rad(ray->angle - player->angle));
 	}
 	else
 	{
 		ray->f_dist_y -= ray->dist_y;
-		ray->wall_dist = ray->f_dist_y;
+		ray->wall_dist = ray->f_dist_y * cos(degree_to_rad(ray->angle - player->angle));
 	}
 	ft_draw_image(ray, cub);
 }
@@ -109,4 +109,5 @@ void	innit_player(t_player *player)
 	player->pos_y = 2.5;
 	player->dir_x = 0.0;
 	player->dir_y = 1.0;
+	player->angle = 45;
 }

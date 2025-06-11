@@ -6,7 +6,7 @@
 /*   By: ruida-si <ruida-si@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/02 15:02:27 by ruida-si          #+#    #+#             */
-/*   Updated: 2025/06/10 18:46:54 by ruida-si         ###   ########.fr       */
+/*   Updated: 2025/06/11 13:49:53 by ruida-si         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@ typedef struct s_player
 	double	pos_y;
 	double	dir_x;
 	double	dir_y;
+	double	angle;
 }	t_player;
 
 typedef struct s_ray
