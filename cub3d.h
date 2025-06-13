@@ -6,7 +6,7 @@
 /*   By: ruida-si <ruida-si@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/02 15:02:27 by ruida-si          #+#    #+#             */
-/*   Updated: 2025/06/13 15:12:42 by ruida-si         ###   ########.fr       */
+/*   Updated: 2025/06/13 18:40:39 by ruida-si         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,32 +17,33 @@ extern int map[5][5];
 
 # define PI 3.1415926535897932384
 # define FOV 60.0
+#define KEY_LEFT 123
+#define KEY_RIGHT 124
 
 # include <stdlib.h>
 # include <stdio.h>
 # include <math.h>
 
-typedef struct s_cub
-{
-	void	*mlx;
-	void	*win;
-	void	*img;
-	int		*img_data;
-	int		max_width;
-	int		max_height;
-	int		bpp;
-	int		size_line;
-	int		endian;
-}	t_cub;
-
 typedef struct s_player
 {
 	double	pos_x;
 	double	pos_y;
-	double	dir_x;
-	double	dir_y;
 	double	angle;
 }	t_player;
+
+typedef struct s_cub
+{
+	void		*mlx;
+	void		*win;
+	void		*img;
+	int			*img_data;
+	int			max_width;
+	int			max_height;
+	int			bpp;
+	int			size_line;
+	int			endian;
+	t_player	player;
+}	t_cub;
 
 typedef struct s_ray
 {
@@ -58,9 +59,18 @@ typedef struct s_ray
 	double	wall_dist;
 }	t_ray;
 
+// INNIT
 void	innit_display(t_cub *cub);
+
+// UTILS
 double	degree_to_rad(double degree);
+
+// RAYCAST
 void	raycast(t_cub *cub);
+
+// RENDERING IMAGE
 void	ft_draw_image(t_ray *ray, t_cub *cub, t_player *player);
+int		game_loop(t_cub * cub);
+void	fill_image(int *data, t_cub *cub);
 
 #endif

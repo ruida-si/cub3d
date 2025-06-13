@@ -6,7 +6,7 @@
 /*   By: ruida-si <ruida-si@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/05 14:15:20 by ruida-si          #+#    #+#             */
-/*   Updated: 2025/06/13 16:16:38 by ruida-si         ###   ########.fr       */
+/*   Updated: 2025/06/13 18:41:17 by ruida-si         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,27 +14,24 @@
 #include "cub3d.h"
 
 void	apply_dda(t_ray *ray, t_player *player, t_cub *cub);
-void	innit_player(t_player *player);
 void	innit_ray(t_ray *ray, t_player *player, int map_x, int map_y);
 
 void	raycast(t_cub *cub)
 {
 	int			x;
-	t_player	player;
 	t_ray		ray;
 	double		deg_step;
 
 	x = 0;
-	innit_player(&player);
 	deg_step = FOV / (cub->max_width - 1);
 	while (x < cub->max_width)
 	{
-		ray.angle = (player.angle + (FOV / 2)) - (x * deg_step);
+		ray.angle = (cub->player.angle + (FOV / 2)) - (x * deg_step);
 		ray.raydir_x = cos(degree_to_rad(ray.angle));
 		ray.raydir_y = sin(degree_to_rad(ray.angle));
 		ray.dist_x = fabs(1 / ray.raydir_x);
 		ray.dist_y = fabs(1 / ray.raydir_y);
-		apply_dda(&ray, &player, cub);
+		apply_dda(&ray, &cub->player, cub);
 		x++;
 	}
 }
@@ -103,11 +100,3 @@ void	innit_ray(t_ray *ray, t_player *player, int map_x, int map_y)
 	}
 }
 
-void	innit_player(t_player *player)
-{
-	player->pos_x = 3.5;
-	player->pos_y = 2.5;
-	player->dir_x = 0.0;
-	player->dir_y = 1.0;
-	player->angle = 135;
-}
