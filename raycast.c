@@ -6,7 +6,7 @@
 /*   By: ruida-si <ruida-si@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/05 14:15:20 by ruida-si          #+#    #+#             */
-/*   Updated: 2025/06/13 13:50:41 by ruida-si         ###   ########.fr       */
+/*   Updated: 2025/06/13 16:16:38 by ruida-si         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,6 @@ void	raycast(t_cub *cub)
 	t_ray		ray;
 	double		deg_step;
 
-	cub->max_width = 1920;
 	x = 0;
 	innit_player(&player);
 	deg_step = FOV / (cub->max_width - 1);
@@ -45,8 +44,7 @@ void	apply_dda(t_ray *ray, t_player *player, t_cub *cub)
 	int	map_x;
 	int	map_y;
 	int	side;
-	
-	(void)cub;
+
 	map_x = (int)player->pos_x;
 	map_y = (int)player->pos_y;
 	innit_ray(ray, player, map_x, map_y);
@@ -78,7 +76,7 @@ void	apply_dda(t_ray *ray, t_player *player, t_cub *cub)
 		ray->wall_dist = ray->f_dist_y;
 	}
 	printf("wall dist: %f angle: %f\n", ray->wall_dist, ray->angle);
-//	ft_draw_image(ray, cub);
+	ft_draw_image(ray, cub, player);
 }
 
 void	innit_ray(t_ray *ray, t_player *player, int map_x, int map_y)
@@ -107,9 +105,9 @@ void	innit_ray(t_ray *ray, t_player *player, int map_x, int map_y)
 
 void	innit_player(t_player *player)
 {
-	player->pos_x = 2.5;
+	player->pos_x = 3.5;
 	player->pos_y = 2.5;
 	player->dir_x = 0.0;
 	player->dir_y = 1.0;
-	player->angle = 30;
+	player->angle = 135;
 }
