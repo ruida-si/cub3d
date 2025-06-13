@@ -6,7 +6,7 @@
 /*   By: ruida-si <ruida-si@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/05 14:15:20 by ruida-si          #+#    #+#             */
-/*   Updated: 2025/06/11 18:17:27 by ruida-si         ###   ########.fr       */
+/*   Updated: 2025/06/13 13:50:41 by ruida-si         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@ void	apply_dda(t_ray *ray, t_player *player, t_cub *cub)
 	int	map_y;
 	int	side;
 	
+	(void)cub;
 	map_x = (int)player->pos_x;
 	map_y = (int)player->pos_y;
 	innit_ray(ray, player, map_x, map_y);
@@ -69,14 +70,15 @@ void	apply_dda(t_ray *ray, t_player *player, t_cub *cub)
 	if (side == 0)
 	{
 		ray->f_dist_x -= ray->dist_x;
-		ray->wall_dist = ray->f_dist_x * cos(degree_to_rad(ray->angle - player->angle));
+		ray->wall_dist = ray->f_dist_x;
 	}
 	else
 	{
 		ray->f_dist_y -= ray->dist_y;
-		ray->wall_dist = ray->f_dist_y * cos(degree_to_rad(ray->angle - player->angle));
+		ray->wall_dist = ray->f_dist_y;
 	}
-	ft_draw_image(ray, cub);
+	printf("wall dist: %f angle: %f\n", ray->wall_dist, ray->angle);
+//	ft_draw_image(ray, cub);
 }
 
 void	innit_ray(t_ray *ray, t_player *player, int map_x, int map_y)
@@ -109,5 +111,5 @@ void	innit_player(t_player *player)
 	player->pos_y = 2.5;
 	player->dir_x = 0.0;
 	player->dir_y = 1.0;
-	player->angle = 45;
+	player->angle = 30;
 }
