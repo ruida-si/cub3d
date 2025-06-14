@@ -6,7 +6,7 @@
 /*   By: ruida-si <ruida-si@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/02 15:02:27 by ruida-si          #+#    #+#             */
-/*   Updated: 2025/06/14 17:51:35 by ruida-si         ###   ########.fr       */
+/*   Updated: 2025/06/14 18:20:36 by ruida-si         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,5 @@ void	raycast(t_cub *cub);
 // RENDERING IMAGE
 void	ft_draw_image(t_ray *ray, t_cub *cub, t_player *player);
 int		game_loop(t_cub * cub);
-void	fill_image(int *data, t_cub *cub);
 
 #endif

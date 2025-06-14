@@ -6,15 +6,15 @@
 /*   By: ruida-si <ruida-si@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/05 14:15:20 by ruida-si          #+#    #+#             */
-/*   Updated: 2025/06/14 17:51:35 by ruida-si         ###   ########.fr       */
+/*   Updated: 2025/06/14 18:18:30 by ruida-si         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minilibx-linux/mlx.h"
 #include "cub3d.h"
 
-void	apply_dda(t_ray *ray, t_player *player, t_cub *cub);
-void	init_ray(t_ray *ray, t_player *player, int map_x, int map_y);
+static void	apply_dda(t_ray *ray, t_player *player, t_cub *cub);
+static void	init_ray(t_ray *ray, t_player *player, int map_x, int map_y);
 
 void	raycast(t_cub *cub)
 {
@@ -37,7 +37,7 @@ void	raycast(t_cub *cub)
 	}
 }
 
-void	apply_dda(t_ray *ray, t_player *player, t_cub *cub)
+static void	apply_dda(t_ray *ray, t_player *player, t_cub *cub)
 {
 	int	map_x;
 	int	map_y;
@@ -71,7 +71,7 @@ void	apply_dda(t_ray *ray, t_player *player, t_cub *cub)
 	ft_draw_image(ray, cub, player);
 }
 
-void	init_ray(t_ray *ray, t_player *player, int map_x, int map_y)
+static void	init_ray(t_ray *ray, t_player *player, int map_x, int map_y)
 {
 	if (ray->raydir_x < 0)
 	{
