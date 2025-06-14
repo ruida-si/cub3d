@@ -6,7 +6,7 @@
 /*   By: ruida-si <ruida-si@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/03 14:53:31 by ruida-si          #+#    #+#             */
-/*   Updated: 2025/06/14 13:38:36 by ruida-si         ###   ########.fr       */
+/*   Updated: 2025/06/14 14:06:59 by ruida-si         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	init_display(t_cub *cub)
 	cub->win = mlx_new_window(cub->mlx, cub->max_width, cub->max_height, "cub3D");
 	mlx_key_hook(cub->win, key_handler, cub);
 	mlx_hook(cub->win, 17, 0, close_event, cub);
-	mlx_loop_hook(cub->mlx, game_loop, cub);	
+	mlx_loop_hook(cub->mlx, game_loop, cub);
 	mlx_loop(cub->mlx);
 }
 
@@ -67,14 +67,20 @@ static int	key_handler(int key, void *param)
 	t_cub *cub;
 	
 	cub = (t_cub *)param;	
-	if (key == 65307)
-	{
+	if (key == XK_Escape)
 		exit(1);
-	}
 	if (key == XK_Left)
 		cub->player.angle += 15;
 	if (key == XK_Right)
-		cub->player.angle -= 15;		
+		cub->player.angle -= 15;
+	if (key == XK_w)
+		cub->player.pos_y -= 0.5;
+	if (key == XK_s)
+		cub->player.pos_y += 0.5;
+	if (key == XK_a)
+		cub->player.pos_x -= 0.5;
+	if (key == XK_d)
+		cub->player.pos_x += 0.5;
 	return (0);
 }
 

@@ -6,7 +6,7 @@
 /*   By: ruida-si <ruida-si@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/02 15:02:27 by ruida-si          #+#    #+#             */
-/*   Updated: 2025/06/14 13:33:29 by ruida-si         ###   ########.fr       */
+/*   Updated: 2025/06/14 16:44:59 by ruida-si         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,12 +21,7 @@ extern int map[5][5];
 # include <X11/keysym.h>
 
 // VARIABLES
-# define PI 3.1415926535897932384
 # define FOV 60.0
-
-// KEYS
-#define KEY_LEFT 123
-#define KEY_RIGHT 124
 
 // COLORS
 #define SKY_COLOR 0xADD8E6
