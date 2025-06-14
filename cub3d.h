@@ -6,7 +6,7 @@
 /*   By: ruida-si <ruida-si@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/02 15:02:27 by ruida-si          #+#    #+#             */
-/*   Updated: 2025/06/13 18:40:39 by ruida-si         ###   ########.fr       */
+/*   Updated: 2025/06/14 13:33:29 by ruida-si         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,14 +15,22 @@
 
 extern int map[5][5];
 
-# define PI 3.1415926535897932384
-# define FOV 60.0
-#define KEY_LEFT 123
-#define KEY_RIGHT 124
-
 # include <stdlib.h>
 # include <stdio.h>
 # include <math.h>
+# include <X11/keysym.h>
+
+// VARIABLES
+# define PI 3.1415926535897932384
+# define FOV 60.0
+
+// KEYS
+#define KEY_LEFT 123
+#define KEY_RIGHT 124
+
+// COLORS
+#define SKY_COLOR 0xADD8E6
+#define GROUND_COLOR 0x8B4513
 
 typedef struct s_player
 {
@@ -57,10 +65,11 @@ typedef struct s_ray
 	double	step_y;
 	double	angle;
 	double	wall_dist;
+	int		x;
 }	t_ray;
 
 // INNIT
-void	innit_display(t_cub *cub);
+void	init_display(t_cub *cub);
 
 // UTILS
 double	degree_to_rad(double degree);

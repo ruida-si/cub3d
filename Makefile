@@ -6,7 +6,7 @@
 #    By: ruida-si <ruida-si@student.42porto.com>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/05/31 18:49:40 by ruida-si          #+#    #+#              #
-#    Updated: 2025/06/13 18:39:22 by ruida-si         ###   ########.fr        #
+#    Updated: 2025/06/14 13:23:26 by ruida-si         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ CC = cc
 
 CFLAGS = -Wall -Werror -Wextra -g
 
-SRC = main.c innit.c \
+SRC = main.c init.c \
 	raycast.c utils.c render.c game_loop.c
 
 MLX = minilibx-linux/

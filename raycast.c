@@ -6,7 +6,7 @@
 /*   By: ruida-si <ruida-si@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/05 14:15:20 by ruida-si          #+#    #+#             */
-/*   Updated: 2025/06/13 18:41:17 by ruida-si         ###   ########.fr       */
+/*   Updated: 2025/06/14 13:17:36 by ruida-si         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include "cub3d.h"
 
 void	apply_dda(t_ray *ray, t_player *player, t_cub *cub);
-void	innit_ray(t_ray *ray, t_player *player, int map_x, int map_y);
+void	init_ray(t_ray *ray, t_player *player, int map_x, int map_y);
 
 void	raycast(t_cub *cub)
 {
@@ -26,6 +26,7 @@ void	raycast(t_cub *cub)
 	deg_step = FOV / (cub->max_width - 1);
 	while (x < cub->max_width)
 	{
+		ray.x = x;
 		ray.angle = (cub->player.angle + (FOV / 2)) - (x * deg_step);
 		ray.raydir_x = cos(degree_to_rad(ray.angle));
 		ray.raydir_y = sin(degree_to_rad(ray.angle));
@@ -44,7 +45,7 @@ void	apply_dda(t_ray *ray, t_player *player, t_cub *cub)
 
 	map_x = (int)player->pos_x;
 	map_y = (int)player->pos_y;
-	innit_ray(ray, player, map_x, map_y);
+	init_ray(ray, player, map_x, map_y);
 	while (1)
 	{
 		if (ray->f_dist_x < ray->f_dist_y)
@@ -63,20 +64,14 @@ void	apply_dda(t_ray *ray, t_player *player, t_cub *cub)
 			break ;
 	}
 	if (side == 0)
-	{
-		ray->f_dist_x -= ray->dist_x;
-		ray->wall_dist = ray->f_dist_x;
-	}
+		ray->wall_dist = ray->f_dist_x - ray->dist_x;
 	else
-	{
-		ray->f_dist_y -= ray->dist_y;
-		ray->wall_dist = ray->f_dist_y;
-	}
+		ray->wall_dist = ray->f_dist_y - ray->dist_y;
 	printf("wall dist: %f angle: %f\n", ray->wall_dist, ray->angle);
 	ft_draw_image(ray, cub, player);
 }
 
-void	innit_ray(t_ray *ray, t_player *player, int map_x, int map_y)
+void	init_ray(t_ray *ray, t_player *player, int map_x, int map_y)
 {
 	if (ray->raydir_x < 0)
 	{
