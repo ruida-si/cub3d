@@ -6,7 +6,7 @@
 /*   By: ruida-si <ruida-si@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/02 15:02:27 by ruida-si          #+#    #+#             */
-/*   Updated: 2025/06/14 16:44:59 by ruida-si         ###   ########.fr       */
+/*   Updated: 2025/06/14 17:51:35 by ruida-si         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ typedef struct s_ray
 void	init_display(t_cub *cub);
 
 // UTILS
-double	degree_to_rad(double degree);
+double	deg_to_rad(double degree);
 
 // RAYCAST
 void	raycast(t_cub *cub);

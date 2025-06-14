@@ -6,14 +6,14 @@
 /*   By: ruida-si <ruida-si@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/05 15:46:31 by ruida-si          #+#    #+#             */
-/*   Updated: 2025/06/14 16:45:18 by ruida-si         ###   ########.fr       */
+/*   Updated: 2025/06/14 17:51:35 by ruida-si         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minilibx-linux/mlx.h"
 #include "cub3d.h"
 
-double	degree_to_rad(double degree)
+double	deg_to_rad(double degree)
 {
 	double	rad;
 

@@ -6,7 +6,7 @@
 /*   By: ruida-si <ruida-si@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/03 14:53:31 by ruida-si          #+#    #+#             */
-/*   Updated: 2025/06/14 17:13:24 by ruida-si         ###   ########.fr       */
+/*   Updated: 2025/06/14 17:53:20 by ruida-si         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,30 +65,36 @@ void	fill_image(int *data, t_cub *cub)
 static int	key_handler(int key, void *param)
 {
 	t_cub		*cub;
-	t_player	player;
+	t_player	*player;
 	
 	cub = (t_cub *)param;
-	player = cub->player;
+	player = &cub->player;
 	if (key == XK_Escape)
 		exit(1);
 	if (key == XK_Left)
-		cub->player.angle += 15;
+		player->angle = (int)(player->angle + 15) % 360;
 	if (key == XK_Right)
-		cub->player.angle -= 15;
+		player->angle = (int)(player->angle - 15 + 360) % 360;
 	if (key == XK_w)
 	{
-		cub->player.pos_x += cos(degree_to_rad(player.angle)) * 0.1;
-		cub->player.pos_y -= sin(degree_to_rad(player.angle)) * 0.1;
+		player->pos_x += cos(deg_to_rad(player->angle)) * 0.1;
+		player->pos_y -= sin(deg_to_rad(player->angle)) * 0.1;
 	}
 	if (key == XK_s)
 	{
-		cub->player.pos_x -= cos(degree_to_rad(player.angle)) * 0.1;
-		cub->player.pos_y += sin(degree_to_rad(player.angle)) * 0.1;
+		player->pos_x -= cos(deg_to_rad(player->angle)) * 0.1;
+		player->pos_y += sin(deg_to_rad(player->angle)) * 0.1;
 	}
 	if (key == XK_a)
-		cub->player.pos_x -= 0.5;
+	{
+		player->pos_x += cos(deg_to_rad(player->angle + 90.0)) * 0.1;
+		player->pos_y -= sin(deg_to_rad(player->angle + 90.0)) * 0.1;
+	}
 	if (key == XK_d)
-		cub->player.pos_x += 0.5;
+	{
+		player->pos_x += cos(deg_to_rad(player->angle - 90.0)) * 0.1;
+		player->pos_y -= sin(deg_to_rad(player->angle - 90.0)) * 0.1;
+	}
 	return (0);
 }
 

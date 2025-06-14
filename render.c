@@ -6,7 +6,7 @@
 /*   By: ruida-si <ruida-si@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/10 18:35:24 by ruida-si          #+#    #+#             */
-/*   Updated: 2025/06/14 13:12:54 by ruida-si         ###   ########.fr       */
+/*   Updated: 2025/06/14 17:51:35 by ruida-si         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,8 @@ void	ft_draw_image(t_ray *ray, t_cub *cub, t_player *player)
 	int		start;
 	int		end;
 
-	ray->wall_dist *= cos(degree_to_rad(ray->angle - player->angle));
-	proj_plane = cub->max_height / 2.0 / tan(degree_to_rad(FOV / 2));
+	ray->wall_dist *= cos(deg_to_rad(ray->angle - player->angle));
+	proj_plane = cub->max_height / 2.0 / tan(deg_to_rad(FOV / 2));
 	line_height = (int)(1.0 / ray->wall_dist * proj_plane * 0.5);
 	printf("line height: %i ", line_height);
 	start = cub->max_height / 2 - line_height / 2;

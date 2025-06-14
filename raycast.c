@@ -6,7 +6,7 @@
 /*   By: ruida-si <ruida-si@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/05 14:15:20 by ruida-si          #+#    #+#             */
-/*   Updated: 2025/06/14 13:17:36 by ruida-si         ###   ########.fr       */
+/*   Updated: 2025/06/14 17:51:35 by ruida-si         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,8 @@ void	raycast(t_cub *cub)
 	{
 		ray.x = x;
 		ray.angle = (cub->player.angle + (FOV / 2)) - (x * deg_step);
-		ray.raydir_x = cos(degree_to_rad(ray.angle));
-		ray.raydir_y = sin(degree_to_rad(ray.angle));
+		ray.raydir_x = cos(deg_to_rad(ray.angle));
+		ray.raydir_y = sin(deg_to_rad(ray.angle));
 		ray.dist_x = fabs(1 / ray.raydir_x);
 		ray.dist_y = fabs(1 / ray.raydir_y);
 		apply_dda(&ray, &cub->player, cub);
