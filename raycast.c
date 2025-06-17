@@ -6,7 +6,7 @@
 /*   By: ruida-si <ruida-si@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/05 14:15:20 by ruida-si          #+#    #+#             */
-/*   Updated: 2025/06/14 18:18:30 by ruida-si         ###   ########.fr       */
+/*   Updated: 2025/06/17 14:44:13 by ruida-si         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,6 @@ static void	apply_dda(t_ray *ray, t_player *player, t_cub *cub)
 {
 	int	map_x;
 	int	map_y;
-	int	side;
 
 	map_x = (int)player->pos_x;
 	map_y = (int)player->pos_y;
@@ -52,18 +51,18 @@ static void	apply_dda(t_ray *ray, t_player *player, t_cub *cub)
 		{
 			ray->f_dist_x += ray->dist_x;
 			map_x += ray->step_x;
-			side = 0;
+			ray->side = X;
 		}
 		else
 		{
 			ray->f_dist_y += ray->dist_y;
 			map_y += ray->step_y;
-			side = 1;
+			ray->side = Y;
 		}
 		if (map[map_y][map_x] == 1)
 			break ;
 	}
-	if (side == 0)
+	if (ray->side == X)
 		ray->wall_dist = ray->f_dist_x - ray->dist_x;
 	else
 		ray->wall_dist = ray->f_dist_y - ray->dist_y;
