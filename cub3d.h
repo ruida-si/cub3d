@@ -6,7 +6,7 @@
 /*   By: ruida-si <ruida-si@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/02 15:02:27 by ruida-si          #+#    #+#             */
-/*   Updated: 2025/06/17 15:23:53 by ruida-si         ###   ########.fr       */
+/*   Updated: 2025/06/17 19:24:49 by ruida-si         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,15 @@ extern int map[5][5];
 # include <math.h>
 # include <X11/keysym.h>
 
-// SIDE WALLS
-# define X 0
-# define Y 1
+// TEXTURES
+#define TEX_N 0
+#define TEX_S 1
+#define TEX_E 2
+#define TEX_W 3
+
+// WALLS HIT SIDE
+# define X 4
+# define Y 5
 
 // VARIABLES
 # define FOV 60.0
@@ -40,16 +46,13 @@ typedef struct s_player
 
 typedef struct s_tex
 {
-	int		*n_pix;
-	void	*n_img;
-	int		*s_pix;
-	void	*s_img;
-	int		*e_pix;
-	void	*e_img;
-	int		*w_pix;
-	void	*w_img;
+	int		*pix;
+	void	*img;
 	int		width;
 	int		height;
+	int		bpp;
+	int		size_line;
+	int		endian;
 }	t_tex;
 
 typedef struct s_cub
@@ -64,7 +67,7 @@ typedef struct s_cub
 	int			size_line;
 	int			endian;
 	t_player	player;
-	t_tex		tex;
+	t_tex		tex[4];
 }	t_cub;
 
 typedef struct s_ray
