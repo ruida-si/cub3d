@@ -6,7 +6,7 @@
 /*   By: ruida-si <ruida-si@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/10 18:35:24 by ruida-si          #+#    #+#             */
-/*   Updated: 2025/06/14 17:51:35 by ruida-si         ###   ########.fr       */
+/*   Updated: 2025/06/18 19:13:48 by ruida-si         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,13 @@ void	ft_draw_image(t_ray *ray, t_cub *cub, t_player *player)
 		end = cub->max_height -1;
 	while (start <= end)
 	{
-		cub->img_data[start * cub->max_width + ray->x] = 0x0000FF;
+		if (ray->angle > 45 && ray->angle < 135)
+		{
+			int a = start % cub->tex[TEX_N].height;
+			cub->img_data[start * cub->max_width + ray->x] = cub->tex[TEX_E].pix[a * cub->tex[TEX_E].width + ray->x];			
+		}
+		else
+			cub->img_data[start * cub->max_width + ray->x] = 0x0000FF;
 		start++;
 	}
 }

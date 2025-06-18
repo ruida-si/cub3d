@@ -6,7 +6,7 @@
 /*   By: ruida-si <ruida-si@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/02 15:02:27 by ruida-si          #+#    #+#             */
-/*   Updated: 2025/06/17 19:24:49 by ruida-si         ###   ########.fr       */
+/*   Updated: 2025/06/18 18:53:11 by ruida-si         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,6 +96,7 @@ double	deg_to_rad(double degree);
 void	raycast(t_cub *cub);
 
 // RENDERING IMAGE
+void	load_images(t_cub *cub);
 void	ft_draw_image(t_ray *ray, t_cub *cub, t_player *player);
 int		game_loop(t_cub * cub);
 
