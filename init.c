@@ -6,7 +6,7 @@
 /*   By: ruida-si <ruida-si@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/03 14:53:31 by ruida-si          #+#    #+#             */
-/*   Updated: 2025/06/18 18:53:44 by ruida-si         ###   ########.fr       */
+/*   Updated: 2025/06/19 13:50:08 by ruida-si         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void	init_display(t_cub *cub)
 	mlx_get_screen_size(cub->mlx, &cub->max_width, &cub->max_height);
 	cub->max_height -= 80;
 	cub->win = mlx_new_window(cub->mlx, cub->max_width, cub->max_height, "cub3D");
-	load_images(cub);
+	load_textures(cub);
 	mlx_key_hook(cub->win, key_handler, cub);
 	mlx_hook(cub->win, 17, 0, close_event, cub);
 	mlx_loop_hook(cub->mlx, game_loop, cub);

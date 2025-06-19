@@ -6,7 +6,7 @@
 /*   By: ruida-si <ruida-si@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/05 15:46:31 by ruida-si          #+#    #+#             */
-/*   Updated: 2025/06/18 18:52:55 by ruida-si         ###   ########.fr       */
+/*   Updated: 2025/06/19 13:50:08 by ruida-si         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ double	deg_to_rad(double degree)
 	return (rad);
 }
 
-void	load_images(t_cub *cub)
+void	load_textures(t_cub *cub)
 {
 	char	*paths[4] = {
 		"images/n.xpm",
