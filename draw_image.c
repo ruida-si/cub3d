@@ -1,17 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   render.c                                           :+:      :+:    :+:   */
+/*   draw_image.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ruida-si <ruida-si@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/10 18:35:24 by ruida-si          #+#    #+#             */
-/*   Updated: 2025/06/19 13:37:49 by ruida-si         ###   ########.fr       */
+/*   Updated: 2025/06/19 17:22:57 by ruida-si         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minilibx-linux/mlx.h"
 #include "cub3d.h"
+
+static void	print_line(t_cub *cub, t_ray *ray, int start, int end);
+static int	pick_texture(t_ray *ray);
 
 void	ft_draw_image(t_ray *ray, t_cub *cub, t_player *player)
 {
@@ -30,16 +33,48 @@ void	ft_draw_image(t_ray *ray, t_cub *cub, t_player *player)
 	end = cub->max_height / 2 + line_height / 2;
 	if (end > cub->max_height -1)
 		end = cub->max_height -1;
-	while (start <= end)
+	print_line(cub, ray, start, end);
+}
+
+static void	print_line(t_cub *cub, t_ray *ray, int start, int end)
+{
+	int	i;
+	int	line_height;
+	int	tex_x;
+	int	tex_y;
+	int	color;
+	int	tex_id;
+
+	tex_id = pick_texture(ray);
+	tex_x = ray->wall_x * cub->tex[tex_id].width;
+	i = start;
+	line_height = end - start + 1;	
+	while (i <= end)
 	{
-		if (ray->angle > 45 && ray->angle < 135)
-		{
-			int a = start % cub->tex[TEX_N].height;
-			int b = ray->x % cub->tex[TEX_N].width;
-			cub->img_data[start * cub->max_width + ray->x] = cub->tex[TEX_N].pix[a * cub->tex[TEX_N].width + b];			
-		}
-		else
-			cub->img_data[start * cub->max_width + ray->x] = 0x0000FF;
-		start++;
+		tex_y = (int)((i - start) / (double)line_height * cub->tex[tex_id].height);
+		color = cub->tex[tex_id].pix[tex_y * cub->tex[tex_id].width + tex_x];
+		cub->img_data[i * cub->max_width + ray->x] = color;
+		i++;
 	}
+}
+
+static int	pick_texture(t_ray *ray)
+{
+	int	tex_id;
+
+	if (ray->side == X)
+	{
+		if (ray->raydir_x < 0)
+			tex_id = TEX_W;
+		else
+			tex_id = TEX_E;
+	}
+	else
+	{
+		if (ray->raydir_y < 0)
+			tex_id = TEX_S;
+		else
+			tex_id = TEX_N;
+	}
+	return (tex_id);
 }

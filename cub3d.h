@@ -6,7 +6,7 @@
 /*   By: ruida-si <ruida-si@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/02 15:02:27 by ruida-si          #+#    #+#             */
-/*   Updated: 2025/06/19 13:50:08 by ruida-si         ###   ########.fr       */
+/*   Updated: 2025/06/19 16:25:07 by ruida-si         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,6 +84,7 @@ typedef struct s_ray
 	double	wall_dist;
 	int		x;
 	int		side;
+	double	wall_x;
 }	t_ray;
 
 // INNIT

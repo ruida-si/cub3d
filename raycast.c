@@ -6,7 +6,7 @@
 /*   By: ruida-si <ruida-si@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/05 14:15:20 by ruida-si          #+#    #+#             */
-/*   Updated: 2025/06/19 14:08:58 by ruida-si         ###   ########.fr       */
+/*   Updated: 2025/06/19 17:32:09 by ruida-si         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 #include "cub3d.h"
 
 static void	apply_dda(t_ray *ray, t_cub *cub, int map_x, int map_y);
+static void	compute_wall_hit(t_cub *cub, t_ray *ray);
 static void	init_ray(t_ray *ray, t_player *player, int map_x, int map_y);
 
 void	raycast(t_cub *cub)
@@ -63,8 +64,22 @@ static void	apply_dda(t_ray *ray, t_cub *cub, int map_x, int map_y)
 		ray->wall_dist = ray->f_dist_x - ray->dist_x;
 	else
 		ray->wall_dist = ray->f_dist_y - ray->dist_y;
+	compute_wall_hit(cub, ray);
 	printf("wall dist: %f angle: %f\n", ray->wall_dist, ray->angle);
 	ft_draw_image(ray, cub, &cub->player);
+}
+
+static void	compute_wall_hit(t_cub *cub, t_ray *ray)
+{
+	double	wall_hit;
+	
+	if (ray->side == X)
+		wall_hit = cub->player.pos_y + ray->wall_dist * ray->raydir_y;
+	else
+		wall_hit = cub->player.pos_x + ray->wall_dist * ray->raydir_x;
+	ray->wall_x = wall_hit - floor(wall_hit);
+	if ((ray->side == X && ray->raydir_x < 0) || (ray->side == Y && ray->raydir_y > 0))
+		ray->wall_x = 1.0 - ray->wall_x;
 }
 
 static void	init_ray(t_ray *ray, t_player *player, int map_x, int map_y)
