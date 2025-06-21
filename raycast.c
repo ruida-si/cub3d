@@ -6,7 +6,7 @@
 /*   By: ruida-si <ruida-si@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/05 14:15:20 by ruida-si          #+#    #+#             */
-/*   Updated: 2025/06/19 17:32:09 by ruida-si         ###   ########.fr       */
+/*   Updated: 2025/06/21 15:49:32 by ruida-si         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,7 @@ static void	compute_wall_hit(t_cub *cub, t_ray *ray)
 	else
 		wall_hit = cub->player.pos_x + ray->wall_dist * ray->raydir_x;
 	ray->wall_x = wall_hit - floor(wall_hit);
-	if ((ray->side == X && ray->raydir_x < 0) || (ray->side == Y && ray->raydir_y > 0))
+	if (ray->side == X)
 		ray->wall_x = 1.0 - ray->wall_x;
 }
 
@@ -92,12 +92,12 @@ static void	init_ray(t_ray *ray, t_player *player, int map_x, int map_y)
 	else
 	{
 		ray->step_x = 1;
-		ray->f_dist_x = (map_x + 1 - player->pos_x) * ray->dist_x;
+		ray->f_dist_x = (map_x + 1.0 - player->pos_x) * ray->dist_x;
 	}
 	if (ray->raydir_y < 0)
 	{
 		ray->step_y = 1;
-		ray->f_dist_y = (map_y + 1 - player->pos_y) * ray->dist_y;
+		ray->f_dist_y = (map_y + 1.0 - player->pos_y) * ray->dist_y;
 	}
 	else
 	{

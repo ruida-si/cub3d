@@ -6,7 +6,7 @@
 /*   By: ruida-si <ruida-si@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/02 15:02:27 by ruida-si          #+#    #+#             */
-/*   Updated: 2025/06/19 16:25:07 by ruida-si         ###   ########.fr       */
+/*   Updated: 2025/06/21 13:33:39 by ruida-si         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,8 @@ typedef struct s_cub
 
 typedef struct s_ray
 {
+	int		x;
+	int		side;
 	double	raydir_x;
 	double	raydir_y;
 	double	dist_x;
@@ -81,9 +83,7 @@ typedef struct s_ray
 	double	step_x;
 	double	step_y;
 	double	angle;
-	double	wall_dist;
-	int		x;
-	int		side;
+	double	wall_dist;	
 	double	wall_x;
 }	t_ray;
 

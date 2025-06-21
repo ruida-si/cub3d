@@ -6,7 +6,7 @@
 /*   By: ruida-si <ruida-si@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/10 18:35:24 by ruida-si          #+#    #+#             */
-/*   Updated: 2025/06/19 17:22:57 by ruida-si         ###   ########.fr       */
+/*   Updated: 2025/06/21 14:54:44 by ruida-si         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,12 +46,12 @@ static void	print_line(t_cub *cub, t_ray *ray, int start, int end)
 	int	tex_id;
 
 	tex_id = pick_texture(ray);
-	tex_x = ray->wall_x * cub->tex[tex_id].width;
+	tex_x = (int)(ray->wall_x * (cub->tex[tex_id].width - 1));	
 	i = start;
 	line_height = end - start + 1;	
 	while (i <= end)
 	{
-		tex_y = (int)((i - start) / (double)line_height * cub->tex[tex_id].height);
+		tex_y = (int)((double)(i - start) / line_height * cub->tex[tex_id].height);
 		color = cub->tex[tex_id].pix[tex_y * cub->tex[tex_id].width + tex_x];
 		cub->img_data[i * cub->max_width + ray->x] = color;
 		i++;

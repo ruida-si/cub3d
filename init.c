@@ -6,7 +6,7 @@
 /*   By: ruida-si <ruida-si@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/03 14:53:31 by ruida-si          #+#    #+#             */
-/*   Updated: 2025/06/19 13:50:08 by ruida-si         ###   ########.fr       */
+/*   Updated: 2025/06/20 14:09:55 by ruida-si         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,8 @@ void	init_display(t_cub *cub)
 static void	init_player(t_player *player, t_cub *cub)
 {
 	cub->img = NULL;
-	player->pos_x = 2.5;
-	player->pos_y = 2.5;
+	player->pos_x = 1.5;
+	player->pos_y = 1.5;
 	player->angle = 90;
 }
 

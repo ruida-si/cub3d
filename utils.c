@@ -6,7 +6,7 @@
 /*   By: ruida-si <ruida-si@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/05 15:46:31 by ruida-si          #+#    #+#             */
-/*   Updated: 2025/06/19 17:22:02 by ruida-si         ###   ########.fr       */
+/*   Updated: 2025/06/21 16:02:00 by ruida-si         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,10 +24,10 @@ double	deg_to_rad(double degree)
 void	load_textures(t_cub *cub)
 {
 	char	*paths[4] = {
-		"images/n.xpm",
-		"images/s.xpm",
-		"images/e.xpm",
-		"images/w.xpm"
+		"images/desert.xpm",
+		"images/desert.xpm",
+		"images/desert.xpm",
+		"images/desert.xpm"
 	};
 	int	i;
 
