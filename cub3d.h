@@ -6,7 +6,7 @@
 /*   By: ruida-si <ruida-si@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/02 15:02:27 by ruida-si          #+#    #+#             */
-/*   Updated: 2025/06/21 13:33:39 by ruida-si         ###   ########.fr       */
+/*   Updated: 2025/06/21 17:01:49 by ruida-si         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,10 +21,10 @@ extern int map[5][5];
 # include <X11/keysym.h>
 
 // TEXTURES
-#define TEX_N 0
-#define TEX_S 1
-#define TEX_E 2
-#define TEX_W 3
+# define TEX_N 0
+# define TEX_S 1
+# define TEX_E 2
+# define TEX_W 3
 
 // WALLS HIT SIDE
 # define X 4

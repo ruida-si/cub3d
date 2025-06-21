@@ -6,7 +6,7 @@
 /*   By: ruida-si <ruida-si@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/05 14:15:20 by ruida-si          #+#    #+#             */
-/*   Updated: 2025/06/21 15:49:32 by ruida-si         ###   ########.fr       */
+/*   Updated: 2025/06/21 17:43:17 by ruida-si         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,6 @@ static void	apply_dda(t_ray *ray, t_cub *cub, int map_x, int map_y)
 	else
 		ray->wall_dist = ray->f_dist_y - ray->dist_y;
 	compute_wall_hit(cub, ray);
-	printf("wall dist: %f angle: %f\n", ray->wall_dist, ray->angle);
 	ft_draw_image(ray, cub, &cub->player);
 }
 
@@ -78,8 +77,6 @@ static void	compute_wall_hit(t_cub *cub, t_ray *ray)
 	else
 		wall_hit = cub->player.pos_x + ray->wall_dist * ray->raydir_x;
 	ray->wall_x = wall_hit - floor(wall_hit);
-	if (ray->side == X)
-		ray->wall_x = 1.0 - ray->wall_x;
 }
 
 static void	init_ray(t_ray *ray, t_player *player, int map_x, int map_y)
@@ -105,4 +102,3 @@ static void	init_ray(t_ray *ray, t_player *player, int map_x, int map_y)
 		ray->f_dist_y = (player->pos_y - map_y) * ray->dist_y;
 	}
 }
-

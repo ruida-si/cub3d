@@ -6,7 +6,7 @@
 /*   By: ruida-si <ruida-si@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/03 14:53:31 by ruida-si          #+#    #+#             */
-/*   Updated: 2025/06/20 14:09:55 by ruida-si         ###   ########.fr       */
+/*   Updated: 2025/06/21 17:27:50 by ruida-si         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ static void	init_player(t_player *player, t_cub *cub)
 	cub->img = NULL;
 	player->pos_x = 1.5;
 	player->pos_y = 1.5;
-	player->angle = 90;
+	player->angle = 180;
 }
 
 static int	key_handler(int key, void *param)
@@ -54,7 +54,7 @@ static int	key_handler(int key, void *param)
 		player->angle = (int)(player->angle + 15) % 360;
 	if (key == XK_Right)
 		player->angle = (int)(player->angle - 15 + 360) % 360;
-	check_moves(player, key, -1, -1);	
+	check_moves(player, key, -1, -1);
 	return (0);
 }
 
