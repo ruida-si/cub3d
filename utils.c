@@ -6,12 +6,25 @@
 /*   By: ruida-si <ruida-si@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/05 15:46:31 by ruida-si          #+#    #+#             */
-/*   Updated: 2025/06/21 16:38:16 by ruida-si         ###   ########.fr       */
+/*   Updated: 2025/06/23 16:46:23 by ruida-si         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minilibx-linux/mlx.h"
 #include "cub3d.h"
+
+void	*ft_memset(void *s, int c, size_t n)
+{
+	unsigned char	*str;
+
+	str = (unsigned char *)s;
+	while (n > 0)
+	{
+		*str++ = (unsigned char)c;
+		n--;
+	}
+	return (s);
+}
 
 double	deg_to_rad(double degree)
 {

@@ -6,7 +6,7 @@
 /*   By: ruida-si <ruida-si@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/10 18:35:24 by ruida-si          #+#    #+#             */
-/*   Updated: 2025/06/21 17:45:54 by ruida-si         ###   ########.fr       */
+/*   Updated: 2025/06/23 14:19:05 by ruida-si         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,8 +46,10 @@ static void	print_line(t_cub *cub, t_ray *ray, int start, int end)
 
 	tex_id = pick_texture(ray);
 	tex_x = (int)(ray->wall_x * (cub->tex[tex_id].width - 1));
-	if (tex_id == TEX_E || tex_id == TEX_W)
-		printf("wall x: %f\n", ray->wall_x);
+	if (tex_x < 0)
+		tex_x = 0;
+	if (tex_x >= cub->tex[tex_id].width)
+		tex_x = cub->tex[tex_id].width - 1;
 	y = start;
 	line_height = end - start + 1;
 	while (y <= end)

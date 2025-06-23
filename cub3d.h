@@ -6,7 +6,7 @@
 /*   By: ruida-si <ruida-si@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/02 15:02:27 by ruida-si          #+#    #+#             */
-/*   Updated: 2025/06/21 17:01:49 by ruida-si         ###   ########.fr       */
+/*   Updated: 2025/06/23 17:07:20 by ruida-si         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,16 @@ extern int map[5][5];
 #define SKY_COLOR 0xADD8E6
 #define GROUND_COLOR 0x8B4513
 
+typedef struct s_keys
+{
+	int w;
+	int a;
+	int s;
+	int d;
+	int left;
+	int right;
+}	t_keys;
+
 typedef struct s_player
 {
 	double	pos_x;
@@ -66,6 +76,7 @@ typedef struct s_cub
 	int			bpp;
 	int			size_line;
 	int			endian;
+	t_keys		keys;
 	t_player	player;
 	t_tex		tex[4];
 }	t_cub;
@@ -92,6 +103,7 @@ void	init_display(t_cub *cub);
 
 // UTILS
 double	deg_to_rad(double degree);
+void	*ft_memset(void *s, int c, size_t n);
 
 // RAYCAST
 void	raycast(t_cub *cub);

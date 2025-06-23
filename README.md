@@ -6,10 +6,6 @@ Cub3D is a 3D graphical project developed as part of the 42 School curriculum. I
 
 Cub3D is built using C and the **MiniLibX** graphics library. The core idea is to simulate a 3D environment using **raycasting**, where each vertical line on the screen represents a ray cast into the 2D map to detect walls and render them with depth.
 
-<p align="center">
-  <img src="path/to/demo.gif" alt="Cub3D Demo" width="600"/>
-</p>
-
 ## 🔧 Features
 
 - Raycasting engine for 3D perspective
