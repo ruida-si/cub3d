@@ -6,7 +6,7 @@
 /*   By: ruida-si <ruida-si@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/05 14:15:20 by ruida-si          #+#    #+#             */
-/*   Updated: 2025/06/23 14:36:29 by ruida-si         ###   ########.fr       */
+/*   Updated: 2025/06/25 14:21:55 by ruida-si         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ static void	apply_dda(t_ray *ray, t_cub *cub, int map_x, int map_y)
 static void	compute_wall_hit(t_cub *cub, t_ray *ray)
 {
 	double	wall_hit;
-	
+
 	if (ray->side == X)
 	{
 		wall_hit = cub->player.pos_y + ray->wall_dist * ray->raydir_y;

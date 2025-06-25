@@ -6,7 +6,7 @@
 /*   By: ruida-si <ruida-si@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/03 14:53:31 by ruida-si          #+#    #+#             */
-/*   Updated: 2025/06/23 16:56:12 by ruida-si         ###   ########.fr       */
+/*   Updated: 2025/06/23 17:31:28 by ruida-si         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void	init_display(t_cub *cub)
 	load_textures(cub);
 	ft_memset(&cub->keys, 0, sizeof(t_keys));
 	mlx_hook(cub->win, 2, 1L<<0, key_press, cub);
-	mlx_hook(cub->win, 3, 1L<<1, key_release, cub);	
+	mlx_hook(cub->win, 3, 1L<<1, key_release, cub);
 	mlx_hook(cub->win, 17, 0, close_event, cub);
 	mlx_loop_hook(cub->mlx, game_loop, cub);
 	mlx_loop(cub->mlx);

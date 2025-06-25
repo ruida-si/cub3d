@@ -6,7 +6,7 @@
 /*   By: ruida-si <ruida-si@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/13 18:11:05 by ruida-si          #+#    #+#             */
-/*   Updated: 2025/06/23 17:07:11 by ruida-si         ###   ########.fr       */
+/*   Updated: 2025/06/25 13:25:46 by ruida-si         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int	game_loop(t_cub * cub)
 	cub->img_data = (int *)mlx_get_data_addr(cub->img, &cub->bpp, &cub->size_line, &cub->endian);
 	check_moves(cub);
 	fill_image(cub->img_data, cub);
-	raycast(cub);	
+	raycast(cub);
 	mlx_put_image_to_window(cub->mlx, cub->win, cub->img, 0, 0);
 	return (0);
 }
