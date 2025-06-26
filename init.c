@@ -6,7 +6,7 @@
 /*   By: ruida-si <ruida-si@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/03 14:53:31 by ruida-si          #+#    #+#             */
-/*   Updated: 2025/06/23 17:31:28 by ruida-si         ###   ########.fr       */
+/*   Updated: 2025/06/26 13:04:28 by ruida-si         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,10 +21,8 @@ static int	close_event(void *param);
 void	init_display(t_cub *cub)
 {
 	init_player(&cub->player, cub);
-	cub->mlx = mlx_init();
-	mlx_get_screen_size(cub->mlx, &cub->max_width, &cub->max_height);
-	cub->max_height -= 80;
-	cub->win = mlx_new_window(cub->mlx, cub->max_width, cub->max_height, "cub3D");
+	cub->mlx = mlx_init();	
+	cub->win = mlx_new_window(cub->mlx, WIDTH, HEIGHT, "cub3D");
 	load_textures(cub);
 	ft_memset(&cub->keys, 0, sizeof(t_keys));
 	mlx_hook(cub->win, 2, 1L<<0, key_press, cub);

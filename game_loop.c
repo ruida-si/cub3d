@@ -6,7 +6,7 @@
 /*   By: ruida-si <ruida-si@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/13 18:11:05 by ruida-si          #+#    #+#             */
-/*   Updated: 2025/06/25 13:25:46 by ruida-si         ###   ########.fr       */
+/*   Updated: 2025/06/26 13:05:25 by ruida-si         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int	game_loop(t_cub * cub)
 {
 	if (cub->img)
 		mlx_destroy_image(cub->mlx, cub->img);
-	cub->img = mlx_new_image(cub->mlx, cub->max_width, cub->max_height);
+	cub->img = mlx_new_image(cub->mlx, WIDTH, HEIGHT);
 	cub->img_data = (int *)mlx_get_data_addr(cub->img, &cub->bpp, &cub->size_line, &cub->endian);
 	check_moves(cub);
 	fill_image(cub->img_data, cub);
@@ -89,18 +89,19 @@ static void	fill_image(int *data, t_cub *cub)
 	int	i;
 	int	j;
 
+	(void)cub;
 	i = 0;
-	while (i < cub->max_height)
+	while (i < HEIGHT)
 	{
 		j = 0;
-		while (j < cub->max_width)
+		while (j < WIDTH)
 		{
-			if (i < cub->max_height / 2)
+			if (i < HEIGHT / 2)
 			{
-				data[i * cub->max_width + j] = SKY_COLOR;
+				data[i * WIDTH + j] = SKY_COLOR;
 			}
 			else
-				data[i * cub->max_width + j] = GROUND_COLOR;
+				data[i * WIDTH + j] = GROUND_COLOR;
 			j++;
 		}
 		i++;

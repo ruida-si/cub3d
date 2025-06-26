@@ -6,7 +6,7 @@
 /*   By: ruida-si <ruida-si@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/10 18:35:24 by ruida-si          #+#    #+#             */
-/*   Updated: 2025/06/25 17:48:02 by ruida-si         ###   ########.fr       */
+/*   Updated: 2025/06/26 13:04:28 by ruida-si         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,10 +24,10 @@ void	ft_draw_image(t_ray *ray, t_cub *cub, t_player *player)
 	int		end;
 	
 	ray->wall_dist *= cos(deg_to_rad(ray->angle - player->angle));
-	proj_plane = cub->max_height / 2.0 / tan(deg_to_rad(FOV / 2));
+	proj_plane = HEIGHT / 2.0 / tan(deg_to_rad(FOV / 2));
 	line_height = (int)(1.0 / ray->wall_dist * proj_plane * 0.5);
-	start = cub->max_height / 2 - line_height / 2;
-	end = cub->max_height / 2 + line_height / 2;
+	start = HEIGHT / 2 - line_height / 2;
+	end = HEIGHT / 2 + line_height / 2;
 	print_line(cub, ray, start, end);
 }
 
@@ -43,14 +43,14 @@ static void	print_line(t_cub *cub, t_ray *ray, int start, int end)
 	tex_id = pick_texture(ray);
 	tex_x = (int)(ray->wall_x * (cub->tex[tex_id].width - 1));	
 	y = start;
-	line_height = end - start + 1;	
+	line_height = end - start + 1;
 	while (y <= end)
 	{
-		if (y >= 0 && y < cub->max_height)
+		if (y >= 0 && y < HEIGHT)
 		{
 			tex_y = (int)((double)(y - start) / line_height * (cub->tex[tex_id].height - 1));
 			color = cub->tex[tex_id].pix[tex_y * cub->tex[tex_id].width + tex_x];
-			cub->img_data[y * cub->max_width + ray->x] = color;
+			cub->img_data[y * WIDTH + ray->x] = color;
 		}
 		y++;
 	}

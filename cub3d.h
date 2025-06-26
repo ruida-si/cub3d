@@ -6,7 +6,7 @@
 /*   By: ruida-si <ruida-si@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/02 15:02:27 by ruida-si          #+#    #+#             */
-/*   Updated: 2025/06/25 13:51:20 by ruida-si         ###   ########.fr       */
+/*   Updated: 2025/06/26 13:02:58 by ruida-si         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,10 @@ extern int map[5][5];
 # include <stdio.h>
 # include <math.h>
 # include <X11/keysym.h>
+
+// DIMENSIONS
+# define WIDTH 1920
+# define HEIGHT 1000
 
 // TEXTURES
 # define TEX_N 0
@@ -71,8 +75,6 @@ typedef struct s_cub
 	void		*win;
 	void		*img;
 	int			*img_data;
-	int			max_width;
-	int			max_height;
 	int			bpp;
 	int			size_line;
 	int			endian;
