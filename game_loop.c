@@ -6,7 +6,7 @@
 /*   By: ruida-si <ruida-si@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/13 18:11:05 by ruida-si          #+#    #+#             */
-/*   Updated: 2025/06/26 13:05:25 by ruida-si         ###   ########.fr       */
+/*   Updated: 2025/06/26 14:58:55 by ruida-si         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,24 +86,22 @@ static void	check_wall_collision(t_player *player, double new_x, double new_y)
 
 static void	fill_image(int *data, t_cub *cub)
 {
-	int	i;
-	int	j;
+	int	y;
+	int	x;
 
 	(void)cub;
-	i = 0;
-	while (i < HEIGHT)
+	y = 0;
+	while (y < HEIGHT)
 	{
-		j = 0;
-		while (j < WIDTH)
+		x = 0;
+		while (x < WIDTH)
 		{
-			if (i < HEIGHT / 2)
-			{
-				data[i * WIDTH + j] = SKY_COLOR;
-			}
+			if (y < HEIGHT / 2)
+				data[y * WIDTH + x] = SKY_COLOR;
 			else
-				data[i * WIDTH + j] = GROUND_COLOR;
-			j++;
+				data[y * WIDTH + x] = GROUND_COLOR;
+			x++;
 		}
-		i++;
+		y++;
 	}
 }
