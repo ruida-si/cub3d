@@ -3,41 +3,58 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: ruida-si <ruida-si@student.42porto.com>    +#+  +:+       +#+         #
+#    By: gribeiro <gribeiro@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2025/05/31 18:49:40 by ruida-si          #+#    #+#              #
-#    Updated: 2025/06/19 14:23:16 by ruida-si         ###   ########.fr        #
+#    Created: 2025/04/04 18:20:53 by gribeiro          #+#    #+#              #
+#    Updated: 2025/04/04 18:20:53 by gribeiro         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
+NAME = cub3D
+
+# Srcs
+SRCS = src/main.c src/parse.c src/parse_map.c src/fill_map.c \
+	src/parse_utils.c src/parse_utils2.c src/memclean.c \
+	src/init.c src/raycast.c src/draw_image.c src/game_loop.c
+OBJS = $(SRCS:.c=.o)
+
+# Compiler
 CC = cc
+CFLAGS = -Wall -Wextra -Werror -g
 
-CFLAGS = -Wall -Werror -Wextra -g
-
-SRC = main.c \
-	init.c \
-	raycast.c \
-	utils.c \
-	draw_image.c \
-	game_loop.c
-
+# Libs
 MLX = minilibx-linux/
+LIBFT_DIR = libft
+LIBFT_A = $(LIBFT_DIR)/libft.a
+INCLUDES = -I./libft
 
-OBJ = $(SRC:.c=.o)
-
-NAME = cub3d
-
+# Rules
 all: $(NAME)
 
-$(NAME): $(OBJ)
+$(NAME): $(OBJS)
+	@make bonus -C ./libft
 	@make -s -C $(MLX)
-	$(CC) $(FLAGS) $(OBJ) $(MLX)libmlx.a -lXext -lX11 -lm -o $(NAME)
+	$(CC) $(CFLAGS) $(OBJS) ./libft/libft.a $(MLX)libmlx.a -lXext -lX11 -lm -o $(NAME)
+
+%.o: %.c
+	$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
+
+test: all
+	./$(NAME) maps/map01.cub
 
 clean:
-	rm -rf $(OBJ)
+	@make clean -C ./libft
 	@make clean -s -C $(MLX)
+	rm -f $(OBJS)
 
 fclean: clean
-	rm -rf $(NAME)
+	@make fclean -C ./libft
+	rm -f $(NAME)
 
 re: fclean all
+
+valgrind: all
+	@valgrind --show-below-main=no --leak-check=full --show-leak-kinds=all \
+	--track-origins=yes -s -q ./cub3D maps/map01.cub
+
+.PHONY: all clean fclean re
