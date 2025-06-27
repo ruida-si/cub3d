@@ -6,7 +6,7 @@
 /*   By: gribeiro <gribeiro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/19 19:31:06 by gribeiro          #+#    #+#             */
-/*   Updated: 2025/06/27 01:40:06 by gribeiro         ###   ########.fr       */
+/*   Updated: 2025/06/27 16:21:35 by gribeiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@
 # include "./../minilibx-linux/mlx.h"
 # include <math.h>
 # include <X11/keysym.h>
+# include <sys/time.h>
 
 //	CONST
 
@@ -41,7 +42,7 @@
 // VARIABLES
 # define FOV 60.0
 # define SPEED 0.03
-# define ROT 1.5
+# define ROT 2
 
 //	STRUCTS
 
@@ -147,6 +148,7 @@ void	raycast(t_cub *cub);
 //	Graphics Utils
 void	load_textures(t_cub *cub);
 double	deg_to_rad(double degree);
+long	ft_get_time(void);
 
 //	Memory Cleanup
 void	cln_maparr(t_cub *cub);

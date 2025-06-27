@@ -6,11 +6,11 @@
 /*   By: gribeiro <gribeiro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/05 14:15:20 by ruida-si          #+#    #+#             */
-/*   Updated: 2025/06/27 03:26:57 by gribeiro         ###   ########.fr       */
+/*   Updated: 2025/06/27 16:19:44 by gribeiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "../cub3d.h"
 
 static void	apply_dda(t_ray *ray, t_cub *cub, int map_x, int map_y);
 static void	compute_wall_hit(t_cub *cub, t_ray *ray);
@@ -75,14 +75,14 @@ static void	compute_wall_hit(t_cub *cub, t_ray *ray)
 	if (ray->side == Y)
 		wall_hit = cub->player.pos_x + ray->wall_dist * ray->raydir_x;
 	else
-		wall_hit = cub->player.pos_y + ray->wall_dist * ray->raydir_y;
+		wall_hit = cub->player.pos_y - ray->wall_dist * ray->raydir_y;
 	ray->wall_x = wall_hit - floor(wall_hit);
 	if (ray->x == WIDTH / 2)
 	{
 		printf("SIDE: %d | wall_x: %.2f | pos_x: %f, pos_y: %f\nraydir_x: %f, raydir_y: %f\nwall_dist: %f wall hit: %f\n",
 			ray->side, ray->wall_x, cub->player.pos_x, cub->player.pos_y, ray->raydir_x, ray->raydir_y, ray->wall_dist, wall_hit);
 	}
-	if ((ray->side == X && ray->raydir_x > 0) || (ray->side == Y && ray->raydir_y < 0))
+	if (ray->side == Y && ray->raydir_y < 0)
 		ray->wall_x = 1.0 - ray->wall_x;
 }
 
@@ -108,12 +108,4 @@ static void	init_ray(t_ray *ray, t_player *player, int map_x, int map_y)
 		ray->step_y = -1;
 		ray->f_dist_y = (player->pos_y - map_y) * ray->dist_y;
 	}
-}
-
-double	deg_to_rad(double degree)
-{
-	double	rad;
-
-	rad = degree * (M_PI / 180);
-	return (rad);
 }

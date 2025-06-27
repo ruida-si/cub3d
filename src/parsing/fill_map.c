@@ -6,11 +6,11 @@
 /*   By: gribeiro <gribeiro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/19 17:58:52 by gribeiro          #+#    #+#             */
-/*   Updated: 2025/06/27 02:43:49 by gribeiro         ###   ########.fr       */
+/*   Updated: 2025/06/27 16:29:48 by gribeiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "../cub3d.h"
 
 static int	fill_loop(t_cub *cub, int *n, int *i, int *j);
 static int	fill_void(t_cub *cub, int *n, int *i, int *j);
@@ -26,6 +26,7 @@ int	fill_final_map(t_cub *cub, int col, int lns)
 
 	i = 0;
 	n = 0;
+	cub->player.angle = -1;
 	while (i < lns)
 	{
 		j = 0;
@@ -108,13 +109,13 @@ static int	fill_space(t_cub *cub, int *n, int *i, int *j)
 static int	set_pl_start(t_cub *cub, int *n, int *i, int *j)
 {
 	if (cub->map.tmp_map[*n] == 'N')
-		cub->player.angle = 95;
+		cub->player.angle = 90;
 	if (cub->map.tmp_map[*n] == 'S')
-		cub->player.angle = 275;
+		cub->player.angle = 270;
 	if (cub->map.tmp_map[*n] == 'E')
-		cub->player.angle = 5;
+		cub->player.angle = 0;
 	if (cub->map.tmp_map[*n] == 'W')
-		cub->player.angle = 185;
+		cub->player.angle = 180;
 	cub->player.pos_y = *i + 0.5;
 	cub->player.pos_x = *j + 0.5;
 	cub->map.map[*i][*j] = '0';

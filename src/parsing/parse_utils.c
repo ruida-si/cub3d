@@ -6,11 +6,11 @@
 /*   By: gribeiro <gribeiro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/19 17:39:45 by gribeiro          #+#    #+#             */
-/*   Updated: 2025/06/20 15:50:30 by gribeiro         ###   ########.fr       */
+/*   Updated: 2025/06/27 16:19:44 by gribeiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "../cub3d.h"
 
 int		get_color(char *file, char *place, int *params);
 int		extract_color(char *file, int i, int *j);
