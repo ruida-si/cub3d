@@ -6,7 +6,7 @@
 /*   By: gribeiro <gribeiro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/03 14:53:31 by ruida-si          #+#    #+#             */
-/*   Updated: 2025/06/27 16:19:44 by gribeiro         ###   ########.fr       */
+/*   Updated: 2025/06/27 18:35:13 by gribeiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,12 +19,12 @@ static int	close_event(void *param);
 void	init_display(t_cub *cub)
 {
 	cub->img = NULL;
-	cub->mlx = mlx_init();	
-	cub->win = mlx_new_window(cub->mlx, WIDTH, HEIGHT, "cub3D");
+	cub->mlx = mlx_init();
 	load_textures(cub);
+	cub->win = mlx_new_window(cub->mlx, WIDTH, HEIGHT, "cub3D");
 	ft_memset(&cub->keys, 0, sizeof(t_keys));
-	mlx_hook(cub->win, 2, 1L<<0, key_press, cub);
-	mlx_hook(cub->win, 3, 1L<<1, key_release, cub);
+	mlx_hook(cub->win, 2, 1L << 0, key_press, cub);
+	mlx_hook(cub->win, 3, 1L << 1, key_release, cub);
 	mlx_hook(cub->win, 17, 0, close_event, cub);
 	mlx_loop_hook(cub->mlx, game_loop, cub);
 	mlx_loop(cub->mlx);
@@ -72,7 +72,7 @@ static int	key_release(int keycode, t_cub *cub)
 static int	close_event(void *param)
 {
 	t_cub	*cub;
-	
+
 	cub = (t_cub *)param;
 	mem_clean(cub);
 	exit(0);

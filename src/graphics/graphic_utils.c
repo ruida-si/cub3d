@@ -6,7 +6,7 @@
 /*   By: gribeiro <gribeiro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/27 15:58:33 by gribeiro          #+#    #+#             */
-/*   Updated: 2025/06/27 16:19:44 by gribeiro         ###   ########.fr       */
+/*   Updated: 2025/06/27 18:34:29 by gribeiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ long	ft_get_time(void)
 void	load_textures(t_cub *cub)
 {
 	char	*paths[4];
-	int	i;
+	int		i;
 
 	paths[TEX_N] = cub->map.no;
 	paths[TEX_S] = cub->map.so;
@@ -35,18 +35,18 @@ void	load_textures(t_cub *cub)
 	i = 0;
 	while (i < 4)
 	{
-		cub->tex[i].img = mlx_xpm_file_to_image(cub->mlx, paths[i],
-			&cub->tex[i].width, &cub->tex[i].height);
+		cub->tex[i].img = mlx_xpm_file_to_image(cub->mlx, paths[i], \
+		&cub->tex[i].width, &cub->tex[i].height);
 		if (!cub->tex[i].img)
 		{
-			printf("Could not load Texture\n");
+			write(2, "Error\nInvalid textures\n", 23);
 			while (--i >= 0)
 				mlx_destroy_image(cub->mlx, cub->tex[i].img);
 			cln_basic(cub);
 			exit(1);
 		}
-		cub->tex[i].pix = (int *)mlx_get_data_addr(cub->tex[i].img,
-			&cub->tex[i].bpp, &cub->tex[i].size_line, &cub->tex[i].endian);
+		cub->tex[i].pix = (int *)mlx_get_data_addr(cub->tex[i].img, \
+		&cub->tex[i].bpp, &cub->tex[i].size_line, &cub->tex[i].endian);
 		i++;
 	}
 }

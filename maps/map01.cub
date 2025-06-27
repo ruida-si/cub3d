@@ -1,7 +1,7 @@
-NO ./textures/N.xpm
-SO ./textures/S.xpm
-EA ./textures/E.xpm
-WE ./textures/W.xpm
+NO ./textures/map01/N.xpm
+SO ./textures/map01/S.xpm
+EA ./textures/map01/E.xpm
+WE ./textures/map01/W.xpm
 
 F 160, 108, 48
 C 88,149,197

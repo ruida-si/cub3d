@@ -6,7 +6,7 @@
 /*   By: gribeiro <gribeiro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/19 19:31:06 by gribeiro          #+#    #+#             */
-/*   Updated: 2025/06/27 16:21:35 by gribeiro         ###   ########.fr       */
+/*   Updated: 2025/06/27 18:37:21 by gribeiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,16 +76,18 @@ typedef struct s_tex
 	int		bpp;
 	int		size_line;
 	int		endian;
+	int		tex_x;
+	int		tex_y;
 }	t_tex;
 
 typedef struct s_keys
 {
-	int w;
-	int a;
-	int s;
-	int d;
-	int left;
-	int right;
+	int	w;
+	int	a;
+	int	s;
+	int	d;
+	int	left;
+	int	right;
 }	t_keys;
 
 typedef struct s_ray
@@ -134,14 +136,14 @@ int		get_color(char *file, char *place, int *params);
 int		extract_color(char *file, int i, int *j);
 void	clean_text(char *file, int i, int j);
 int		chk_remain(char *file);
-void	mapsize(t_cub *cub);
+void	mapsize(t_cub *cub, int i, int max_col);
 int		check_xpm_file(t_cub *cub);
 int		search_row(t_cub *cub, int i);
 int		search_col(t_cub *cub, int j);
 
 //	Graphics
 void	init_display(t_cub *cub);
-int		game_loop(t_cub * cub);
+int		game_loop(t_cub *cub);
 void	ft_draw_image(t_ray *ray, t_cub *cub, t_player *player);
 void	raycast(t_cub *cub);
 

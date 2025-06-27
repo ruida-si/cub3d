@@ -6,7 +6,7 @@
 /*   By: gribeiro <gribeiro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/19 17:41:29 by gribeiro          #+#    #+#             */
-/*   Updated: 2025/06/27 16:20:03 by gribeiro         ###   ########.fr       */
+/*   Updated: 2025/06/27 18:22:35 by gribeiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,14 +53,15 @@ void	mem_clean(t_cub *cub)
 		mlx_destroy_image(cub->mlx, cub->tex[i++].img);
 	mlx_destroy_window(cub->mlx, cub->win);
 	mlx_destroy_display(cub->mlx);
+	free(cub->mlx);
 	cln_maparr(cub);
 	cln_conf(cub, 0);
 }
 
 void	cln_basic(t_cub *cub)
 {
-	mlx_destroy_window(cub->mlx, cub->win);
 	mlx_destroy_display(cub->mlx);
+	free(cub->mlx);
 	cln_maparr(cub);
 	cln_conf(cub, 0);
 }

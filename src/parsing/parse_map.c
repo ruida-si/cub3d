@@ -6,7 +6,7 @@
 /*   By: gribeiro <gribeiro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/19 17:48:24 by gribeiro          #+#    #+#             */
-/*   Updated: 2025/06/27 16:27:22 by gribeiro         ###   ########.fr       */
+/*   Updated: 2025/06/27 18:37:32 by gribeiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ char	**finalmap(t_cub *cub)
 {
 	int	i;
 
-	mapsize(cub);
+	mapsize(cub, 0, 0);
 	cub->map.map = ft_calloc (cub->map.lns + 1, sizeof(char *));
 	if (!cub->map.map)
 		return (NULL);

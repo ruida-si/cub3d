@@ -6,7 +6,7 @@
 /*   By: gribeiro <gribeiro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/05 14:15:20 by ruida-si          #+#    #+#             */
-/*   Updated: 2025/06/27 16:19:44 by gribeiro         ###   ########.fr       */
+/*   Updated: 2025/06/27 16:40:21 by gribeiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,11 +77,6 @@ static void	compute_wall_hit(t_cub *cub, t_ray *ray)
 	else
 		wall_hit = cub->player.pos_y - ray->wall_dist * ray->raydir_y;
 	ray->wall_x = wall_hit - floor(wall_hit);
-	if (ray->x == WIDTH / 2)
-	{
-		printf("SIDE: %d | wall_x: %.2f | pos_x: %f, pos_y: %f\nraydir_x: %f, raydir_y: %f\nwall_dist: %f wall hit: %f\n",
-			ray->side, ray->wall_x, cub->player.pos_x, cub->player.pos_y, ray->raydir_x, ray->raydir_y, ray->wall_dist, wall_hit);
-	}
 	if (ray->side == Y && ray->raydir_y < 0)
 		ray->wall_x = 1.0 - ray->wall_x;
 }

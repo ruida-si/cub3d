@@ -6,7 +6,7 @@
 /*   By: gribeiro <gribeiro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/19 18:52:55 by gribeiro          #+#    #+#             */
-/*   Updated: 2025/06/27 16:19:44 by gribeiro         ###   ########.fr       */
+/*   Updated: 2025/06/27 18:37:04 by gribeiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,13 +16,8 @@ int		check_xpm_file(t_cub *cub);
 int		search_row(t_cub *cub, int i);
 int		search_col(t_cub *cub, int j);
 
-void	mapsize(t_cub *cub)
+void	mapsize(t_cub *cub, int i, int max_col)
 {
-	int	i;
-	int	max_col;
-
-	i = 0;
-	max_col = 0;
 	cub->map.col = 0;
 	cub->map.lns = 0;
 	while (cub->map.tmp_map[i] && cub->map.tmp_map[i] == '\n')

@@ -48,7 +48,7 @@ LIBFT_A = $(LIBFT_DIR)/libft.a
 INCLUDES = -I./libft
 
 # Rules
-all: $(NAME)
+all: mlx $(NAME)
 
 $(NAME): $(OBJS)
 	@make bonus -C ./libft
@@ -59,9 +59,8 @@ $(NAME): $(OBJS)
 	$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
 
 mlx:
-	@if [ ! -d "$(MLX_DIR)" ]; then \
+	@if [ ! -d "$(MLX)" ]; then \
 		git clone https://github.com/42Paris/minilibx-linux.git $(MLX_DIR); \
-		make -C $(MLX_DIR); \
 	fi
 
 test: all
@@ -75,14 +74,14 @@ clean:
 fclean: clean
 	@make fclean -C ./libft
 	rm -f $(NAME)
-	@if [ -d "$(MLX_DIR)" ]; then \
-		rm -rf $(MLX_DIR); \
+	@if [ -d "$(MLX)" ]; then \
+		rm -rf $(MLX); \
 	fi
 
 re: fclean all
 
 valgrind: all
 	@valgrind --show-below-main=no --leak-check=full --show-leak-kinds=all \
-	--track-origins=yes -s -q ./cub3D maps/map01.cub
+	--track-origins=yes -s -q ./cub3D maps/map02.cub
 
 .PHONY: all clean fclean re

@@ -6,15 +6,16 @@
 /*   By: gribeiro <gribeiro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/19 17:34:53 by gribeiro          #+#    #+#             */
-/*   Updated: 2025/06/27 16:19:44 by gribeiro         ###   ########.fr       */
+/*   Updated: 2025/06/27 18:36:33 by gribeiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
 
-static int	readmap(t_cub *cub, int fd);
+static int	readmap(t_cub *cub, int fd, int r);
 static int	fillmap(t_cub *cub, char *file);
 static char	*get_map(char *file);
+static char	*add_extra_nl(char *tmp_map);
 
 int	cubparse(t_cub *cub, int argc, char **argv)
 {
@@ -29,7 +30,7 @@ int	cubparse(t_cub *cub, int argc, char **argv)
 	fd = open (argv[1], O_RDONLY);
 	if (fd < 0)
 		return (write(2, "Error\nInvalid Map\n", 18), -1);
-	if (readmap(cub, fd) == -1)
+	if (readmap(cub, fd, 1) == -1)
 		return (close (fd), -1);
 	close (fd);
 	if (parse_map(cub) == -1)
@@ -38,14 +39,12 @@ int	cubparse(t_cub *cub, int argc, char **argv)
 	return (0);
 }
 
-static int	readmap(t_cub *cub, int fd)
+static int	readmap(t_cub *cub, int fd, int r)
 {
 	char	buff[1000];
 	char	*file;
 	char	*temp;
-	int		r;
 
-	r = 1;
 	file = ft_strdup ("");
 	if (!file)
 		return (write(2, "Error\nMemmory Error\n", 20), -1);
@@ -117,5 +116,19 @@ static char	*get_map(char *file)
 	tmp_map = ft_strdup(&file[i]);
 	if (!tmp_map)
 		return (NULL);
+	if (tmp_map[ft_strlen(tmp_map) - 1] != '\n')
+		tmp_map = add_extra_nl(tmp_map);
 	return (clean_text(file, i, j), tmp_map);
+}
+
+static char	*add_extra_nl(char *tmp_map)
+{
+	char	*tmp;
+
+	tmp = tmp_map;
+	tmp_map = ft_strjoin(tmp_map, "\n");
+	if (!tmp_map)
+		return (NULL);
+	free (tmp);
+	return (tmp_map);
 }
