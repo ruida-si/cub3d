@@ -6,7 +6,7 @@
 /*   By: gribeiro <gribeiro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/13 18:11:05 by ruida-si          #+#    #+#             */
-/*   Updated: 2025/06/26 17:20:16 by gribeiro         ###   ########.fr       */
+/*   Updated: 2025/06/27 01:24:51 by gribeiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int	game_loop(t_cub *cub)
 	cub->img_data = (int *)mlx_get_data_addr(cub->img, &cub->bpp,
 			&cub->size_line, &cub->endian);
 	check_moves(cub);
-	fill_image(cub->img_data, cub);
+	//fill_image(cub->img_data, cub);
 	raycast(cub);
 	mlx_put_image_to_window(cub->mlx, cub->win, cub->img, 0, 0);
 	return (0);
@@ -72,12 +72,12 @@ static void	check_moves2(t_cub *cub, t_player *player, double x, double y)
 
 static void	check_wall_collision(t_cub *cub, double new_x, double new_y)
 {
-	int	x;
-	int	y;
-
-	x = (int)new_x;
-	y = (int)new_y;
-	if (cub->map.map[y][x] != '1')
+	if (
+		cub->map.map[(int)(new_y - 0.1)][(int)(new_x - 0.1)] != '1' &&
+		cub->map.map[(int)(new_y - 0.1)][(int)(new_x + 0.1)] != '1' &&
+		cub->map.map[(int)(new_y + 0.1)][(int)(new_x - 0.1)] != '1' &&
+		cub->map.map[(int)(new_y + 0.1)][(int)(new_x + 0.1)] != '1'
+	)
 	{
 		cub->player.pos_x = new_x;
 		cub->player.pos_y = new_y;

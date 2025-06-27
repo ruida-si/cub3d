@@ -20,7 +20,7 @@ OBJS = $(SRCS:.c=.o)
 
 # Compiler
 CC = cc
-CFLAGS = -Wall -Wextra -Werror -g
+CFLAGS = #-Wall -Wextra -Werror -g
 
 # Libs
 MLX = minilibx-linux/
@@ -39,6 +39,12 @@ $(NAME): $(OBJS)
 %.o: %.c
 	$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
 
+mlx:
+	@if [ ! -d "$(MLX_DIR)" ]; then \
+		git clone https://github.com/42Paris/minilibx-linux.git $(MLX_DIR); \
+		make -C $(MLX_DIR); \
+	fi
+
 test: all
 	./$(NAME) maps/map01.cub
 
@@ -50,6 +56,9 @@ clean:
 fclean: clean
 	@make fclean -C ./libft
 	rm -f $(NAME)
+	@if [ -d "$(MLX_DIR)" ]; then \
+		rm -rf $(MLX_DIR); \
+	fi
 
 re: fclean all
 

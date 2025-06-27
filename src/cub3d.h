@@ -6,7 +6,7 @@
 /*   By: gribeiro <gribeiro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/19 19:31:06 by gribeiro          #+#    #+#             */
-/*   Updated: 2025/06/26 17:19:27 by gribeiro         ###   ########.fr       */
+/*   Updated: 2025/06/27 01:40:06 by gribeiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@
 // VARIABLES
 # define FOV 60.0
 # define SPEED 0.03
-# define ROT 1
+# define ROT 1.5
 
 //	STRUCTS
 
