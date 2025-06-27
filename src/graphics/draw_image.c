@@ -6,11 +6,11 @@
 /*   By: gribeiro <gribeiro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/10 18:35:24 by ruida-si          #+#    #+#             */
-/*   Updated: 2025/06/26 16:38:12 by gribeiro         ###   ########.fr       */
+/*   Updated: 2025/06/27 16:19:44 by gribeiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "../cub3d.h"
 
 static void	print_line(t_cub *cub, t_ray *ray, int start, int end);
 static int	pick_texture(t_ray *ray);
@@ -40,7 +40,7 @@ static void	print_line(t_cub *cub, t_ray *ray, int start, int end)
 	int	tex_id;
 	
 	tex_id = pick_texture(ray);
-	tex_x = (int)(ray->wall_x * (cub->tex[tex_id].width - 1));	
+	tex_x = (int)(ray->wall_x * (cub->tex[tex_id].width - 1));
 	y = start;
 	line_height = end - start + 1;
 	while (y <= end)

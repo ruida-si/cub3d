@@ -6,11 +6,11 @@
 /*   By: gribeiro <gribeiro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/03 14:53:31 by ruida-si          #+#    #+#             */
-/*   Updated: 2025/06/26 16:49:35 by gribeiro         ###   ########.fr       */
+/*   Updated: 2025/06/27 16:19:44 by gribeiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "../cub3d.h"
 
 static int	key_press(int keycode, t_cub *cub);
 static int	key_release(int keycode, t_cub *cub);
@@ -47,7 +47,7 @@ static int	key_press(int keycode, t_cub *cub)
 	else if (keycode == XK_Escape)
 	{
 		mem_clean(cub);
-		exit(1);
+		exit(0);
 	}
 	return (0);
 }
@@ -75,5 +75,5 @@ static int	close_event(void *param)
 	
 	cub = (t_cub *)param;
 	mem_clean(cub);
-	exit(1);
+	exit(0);
 }

@@ -6,11 +6,11 @@
 /*   By: gribeiro <gribeiro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/19 17:48:24 by gribeiro          #+#    #+#             */
-/*   Updated: 2025/06/26 17:06:48 by gribeiro         ###   ########.fr       */
+/*   Updated: 2025/06/27 16:27:22 by gribeiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "../cub3d.h"
 
 static int	check_textures(t_cub *cub);
 static char	**finalmap(t_cub *cub);
@@ -24,6 +24,8 @@ int	parse_map(t_cub *cub)
 	if (cub->map.map == NULL)
 		return (write(2, "Error\nInvalid map\n", 18), -1);
 	if (chk_closedmap(cub) == -1)
+		return (cln_maparr(cub), write(2, "Error\nInvalid map\n", 18), -1);
+	if (cub->player.angle == -1)
 		return (cln_maparr(cub), write(2, "Error\nInvalid map\n", 18), -1);
 	return (0);
 }
@@ -58,8 +60,6 @@ char	**finalmap(t_cub *cub)
 	int	i;
 
 	mapsize(cub);
-/* 	if (cub->map.col < 2 || cub->map.lns < 2)
-		return (NULL); */
 	cub->map.map = ft_calloc (cub->map.lns + 1, sizeof(char *));
 	if (!cub->map.map)
 		return (NULL);

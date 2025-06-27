@@ -6,11 +6,11 @@
 /*   By: gribeiro <gribeiro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/19 17:58:52 by gribeiro          #+#    #+#             */
-/*   Updated: 2025/06/26 17:00:16 by gribeiro         ###   ########.fr       */
+/*   Updated: 2025/06/27 16:29:48 by gribeiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "../cub3d.h"
 
 static int	fill_loop(t_cub *cub, int *n, int *i, int *j);
 static int	fill_void(t_cub *cub, int *n, int *i, int *j);
@@ -26,6 +26,7 @@ int	fill_final_map(t_cub *cub, int col, int lns)
 
 	i = 0;
 	n = 0;
+	cub->player.angle = -1;
 	while (i < lns)
 	{
 		j = 0;

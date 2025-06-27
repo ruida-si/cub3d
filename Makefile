@@ -13,14 +13,33 @@
 NAME = cub3D
 
 # Srcs
-SRCS = src/main.c src/parse.c src/parse_map.c src/fill_map.c \
-	src/parse_utils.c src/parse_utils2.c src/memclean.c \
-	src/init.c src/raycast.c src/draw_image.c src/game_loop.c
-OBJS = $(SRCS:.c=.o)
+PARSE_SRCS = $(addprefix src/parsing/, \
+	parse.c \
+	parse_map.c \
+	fill_map.c \
+	parse_utils.c \
+	parse_utils2.c \
+)
+
+GRAPH_SRCS = $(addprefix src/graphics/, \
+	init.c \
+	game_loop.c \
+	raycast.c \
+	draw_image.c \
+	graphic_utils.c \
+)
+
+SRCS = $(addprefix src/, \
+	main.c \
+	memclean.c \
+)
+
+OBJS = $(SRCS) $(GRAPH_SRCS) $(PARSE_SRCS)
+OBJS := $(OBJS:.c=.o)
 
 # Compiler
 CC = cc
-CFLAGS = -Wall -Wextra -Werror -g
+CFLAGS = -Wall -Wextra -Werror
 
 # Libs
 MLX = minilibx-linux/
@@ -39,6 +58,12 @@ $(NAME): $(OBJS)
 %.o: %.c
 	$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
 
+mlx:
+	@if [ ! -d "$(MLX_DIR)" ]; then \
+		git clone https://github.com/42Paris/minilibx-linux.git $(MLX_DIR); \
+		make -C $(MLX_DIR); \
+	fi
+
 test: all
 	./$(NAME) maps/map01.cub
 
@@ -50,6 +75,9 @@ clean:
 fclean: clean
 	@make fclean -C ./libft
 	rm -f $(NAME)
+	@if [ -d "$(MLX_DIR)" ]; then \
+		rm -rf $(MLX_DIR); \
+	fi
 
 re: fclean all
 

@@ -6,11 +6,11 @@
 /*   By: gribeiro <gribeiro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/19 17:34:53 by gribeiro          #+#    #+#             */
-/*   Updated: 2025/06/26 15:48:28 by gribeiro         ###   ########.fr       */
+/*   Updated: 2025/06/27 16:19:44 by gribeiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "../cub3d.h"
 
 static int	readmap(t_cub *cub, int fd);
 static int	fillmap(t_cub *cub, char *file);
