@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gribeiro <gribeiro@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ruida-si <ruida-si@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/19 19:31:06 by gribeiro          #+#    #+#             */
-/*   Updated: 2025/06/27 18:37:21 by gribeiro         ###   ########.fr       */
+/*   Updated: 2025/06/28 15:29:32 by ruida-si         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@
 
 //	CONST
 
-// DIMENSIONS
+// WINDOW'S DIMENSIONS
 # define WIDTH 1920
 # define HEIGHT 1000
 
@@ -46,13 +46,13 @@
 
 //	STRUCTS
 
-//	Map Struct
 typedef struct s_player
 {
 	double	pos_x;
 	double	pos_y;
 	double	angle;
 }	t_player;
+
 typedef struct s_map
 {
 	int		col;
