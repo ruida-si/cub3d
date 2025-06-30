@@ -6,7 +6,7 @@
 /*   By: gribeiro <gribeiro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/19 17:39:45 by gribeiro          #+#    #+#             */
-/*   Updated: 2025/06/27 16:19:44 by gribeiro         ###   ########.fr       */
+/*   Updated: 2025/06/30 16:34:48 by gribeiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,19 +78,19 @@ int	extract_color(char *file, int i, int *j)
 	int		g;
 	int		b;
 
-	r = 0;
-	g = 0;
-	b = 0;
-	while (file[i] && (file[i] >= '0' && file[i] <= '9'))
-		r = r * 10 + (file[i++] - '0');
+	r = -1;
+	g = -1;
+	b = -1;
+	if (file[i] && (file[i] >= '0' && file[i] <= '9'))
+		r = channel_ext(file, &i);
 	while (file[i] && (file[i] == ',' || file[i] == '\t' || file[i] == ' '))
 		i++;
-	while (file[i] && (file[i] >= '0' && file[i] <= '9'))
-		g = g * 10 + (file[i++] - '0');
+	if (file[i] && (file[i] >= '0' && file[i] <= '9'))
+		g = channel_ext(file, &i);
 	while (file[i] && (file[i] == ',' || file[i] == '\t' || file[i] == ' '))
 		i++;
-	while (file[i] && (file[i] >= '0' && file[i] <= '9'))
-		b = b * 10 + (file[i++] - '0');
+	if (file[i] && (file[i] >= '0' && file[i] <= '9'))
+		b = channel_ext(file, &i);
 	*j = i;
 	if ((r > 255 || g > 255 || b > 255) || (r < 0 || g < 0 || b < 0))
 		return (-1);

@@ -6,7 +6,7 @@
 /*   By: gribeiro <gribeiro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/19 17:58:52 by gribeiro          #+#    #+#             */
-/*   Updated: 2025/06/27 17:45:52 by gribeiro         ###   ########.fr       */
+/*   Updated: 2025/06/30 16:44:10 by gribeiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,6 +108,10 @@ static int	fill_space(t_cub *cub, int *n, int *i, int *j)
 
 static int	set_pl_start(t_cub *cub, int *n, int *i, int *j)
 {
+	static int	found;
+
+	if (found)
+		return (-1);
 	if (cub->map.tmp_map[*n] == 'N')
 		cub->player.angle = 90;
 	if (cub->map.tmp_map[*n] == 'S')
@@ -121,5 +125,6 @@ static int	set_pl_start(t_cub *cub, int *n, int *i, int *j)
 	cub->map.map[*i][*j] = '0';
 	(*j)++;
 	(*n)++;
+	found = 1;
 	return (0);
 }

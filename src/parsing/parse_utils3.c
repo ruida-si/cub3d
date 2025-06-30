@@ -1,22 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   parse_utils3.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gribeiro <gribeiro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/06/05 22:10:47 by gribeiro          #+#    #+#             */
-/*   Updated: 2025/06/30 15:28:30 by gribeiro         ###   ########.fr       */
+/*   Created: 2025/06/30 16:27:26 by gribeiro          #+#    #+#             */
+/*   Updated: 2025/06/30 17:01:58 by gribeiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "../cub3d.h"
 
-int	main(int argc, char **argv)
+int	channel_ext(char *file, int *i)
 {
-	t_cub	cub;
+	int	num;
 
-	if (cubparse(&cub, argc, argv) == -1)
-		return (1);
-	init_display(&cub);
+	num = 0;
+	while (file[*i] && (file[*i] >= '0' && file[*i] <= '9'))
+		num = num * 10 + (file[(*i)++] - '0');
+	return (num);
 }

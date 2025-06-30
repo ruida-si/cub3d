@@ -6,7 +6,7 @@
 /*   By: gribeiro <gribeiro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/19 18:52:55 by gribeiro          #+#    #+#             */
-/*   Updated: 2025/06/27 18:37:04 by gribeiro         ###   ########.fr       */
+/*   Updated: 2025/06/30 17:01:46 by gribeiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 int		check_xpm_file(t_cub *cub);
 int		search_row(t_cub *cub, int i);
 int		search_col(t_cub *cub, int j);
+char	*new_lines(char *str);
 
 void	mapsize(t_cub *cub, int i, int max_col)
 {
@@ -107,4 +108,31 @@ int	search_col(t_cub *cub, int j)
 		i++;
 	}
 	return (0);
+}
+
+char	*new_lines(char *str)
+{
+	char	*tmp;
+	int		i;
+	int		j;
+	int		size;
+
+	i = 0;
+	j = 0;
+	size = ft_strlen(str);
+	tmp = calloc (sizeof(char), (size + 1));
+	while (str[i])
+	{
+		if (str[i] == 13)
+			i++;
+		else
+		{
+			tmp[j] = str[i];
+			i++;
+			j++;
+		}
+	}
+	tmp[i] = '\0';
+	free(str);
+	return (tmp);
 }

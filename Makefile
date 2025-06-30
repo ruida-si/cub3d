@@ -19,6 +19,7 @@ PARSE_SRCS = $(addprefix src/parsing/, \
 	fill_map.c \
 	parse_utils.c \
 	parse_utils2.c \
+	parse_utils3.c \
 )
 
 GRAPH_SRCS = $(addprefix src/graphics/, \
@@ -48,7 +49,7 @@ LIBFT_A = $(LIBFT_DIR)/libft.a
 INCLUDES = -I./libft
 
 # Rules
-all: mlx $(NAME)
+all: $(NAME)
 
 $(NAME): $(OBJS)
 	@make bonus -C ./libft
@@ -64,7 +65,7 @@ mlx:
 	fi
 
 test: all
-	./$(NAME) maps/map01.cub
+	./$(NAME) maps/map02.cub
 
 clean:
 	@make clean -C ./libft

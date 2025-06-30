@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ruida-si <ruida-si@student.42porto.com>    +#+  +:+       +#+        */
+/*   By: gribeiro <gribeiro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/19 19:31:06 by gribeiro          #+#    #+#             */
-/*   Updated: 2025/06/28 15:29:32 by ruida-si         ###   ########.fr       */
+/*   Updated: 2025/06/30 16:30:34 by gribeiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -140,6 +140,8 @@ void	mapsize(t_cub *cub, int i, int max_col);
 int		check_xpm_file(t_cub *cub);
 int		search_row(t_cub *cub, int i);
 int		search_col(t_cub *cub, int j);
+char	*new_lines(char *str);
+int		channel_ext(char *file, int *i);
 
 //	Graphics
 void	init_display(t_cub *cub);

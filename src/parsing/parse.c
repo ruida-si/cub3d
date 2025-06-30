@@ -6,14 +6,14 @@
 /*   By: gribeiro <gribeiro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/19 17:34:53 by gribeiro          #+#    #+#             */
-/*   Updated: 2025/06/27 18:36:33 by gribeiro         ###   ########.fr       */
+/*   Updated: 2025/06/30 16:48:12 by gribeiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
 
 static int	readmap(t_cub *cub, int fd, int r);
-static int	fillmap(t_cub *cub, char *file);
+static int	fillmap(t_cub *cub, char **file);
 static char	*get_map(char *file);
 static char	*add_extra_nl(char *tmp_map);
 
@@ -60,7 +60,7 @@ static int	readmap(t_cub *cub, int fd, int r)
 				write(2, "Error\nMemmory Error\n", 20), -1);
 		free (temp);
 	}
-	if (fillmap(cub, file) == -1)
+	if (fillmap(cub, &file) == -1)
 		return (free(file), -1);
 	if (chk_remain (file) == -1)
 		return (cln_conf(cub, 1), free(file),
@@ -68,27 +68,30 @@ static int	readmap(t_cub *cub, int fd, int r)
 	return (free(file), 0);
 }
 
-static int	fillmap(t_cub *cub, char *file)
+static int	fillmap(t_cub *cub, char **file)
 {
 	int	params;
 
 	params = 0;
-	cub->map.no = get_texture(file, "NO", &params, 0);
-	cub->map.so = get_texture(file, "SO", &params, 0);
-	cub->map.we = get_texture(file, "WE", &params, 0);
-	cub->map.ea = get_texture(file, "EA", &params, 0);
-	cub->map.f = get_color(file, "F", &params);
+	if (!*file[0])
+		return (write(2, "Error\nInvalid Map\n", 18), -1);
+	*file = new_lines(*file);
+	cub->map.no = get_texture(*file, "NO", &params, 0);
+	cub->map.so = get_texture(*file, "SO", &params, 0);
+	cub->map.we = get_texture(*file, "WE", &params, 0);
+	cub->map.ea = get_texture(*file, "EA", &params, 0);
+	cub->map.f = get_color(*file, "F", &params);
 	if (cub->map.f == -1)
 		return (cln_conf(cub, 0),
 			write(2, "Error\nInvalid RGB color\n", 25), -1);
-	cub->map.c = get_color(file, "C", &params);
+	cub->map.c = get_color(*file, "C", &params);
 	if (cub->map.c == -1)
 		return (cln_conf(cub, 0),
 			write(2, "Error\nInvalid RGB color\n", 25), -1);
 	if (params != 6)
 		return (cln_conf(cub, 0),
 			write(2, "Error\nInvalid map settings\n", 27), -1);
-	cub->map.tmp_map = get_map(file);
+	cub->map.tmp_map = get_map(*file);
 	return (0);
 }
 
@@ -106,7 +109,7 @@ static char	*get_map(char *file)
 	{
 		if (file[i] == '\n' && file[i - 1] == '\n')
 		{
-			i += 1;
+			i++;
 			break ;
 		}
 		i--;
