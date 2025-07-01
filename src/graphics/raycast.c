@@ -77,7 +77,8 @@ static void	compute_wall_hit(t_cub *cub, t_ray *ray)
 	else
 		wall_hit = cub->player.pos_y - ray->wall_dist * ray->raydir_y;
 	ray->wall_x = wall_hit - floor(wall_hit);
-	if (ray->side == Y && ray->raydir_y < 0)
+	if ((ray->side == Y && ray->raydir_y < 0) \
+	|| (ray->side == X && ray->raydir_x < 0))
 		ray->wall_x = 1.0 - ray->wall_x;
 }
 
