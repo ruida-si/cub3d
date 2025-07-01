@@ -6,7 +6,7 @@
 /*   By: gribeiro <gribeiro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/05 22:10:47 by gribeiro          #+#    #+#             */
-/*   Updated: 2025/06/30 15:28:30 by gribeiro         ###   ########.fr       */
+/*   Updated: 2025/07/01 12:27:32 by gribeiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,4 +19,5 @@ int	main(int argc, char **argv)
 	if (cubparse(&cub, argc, argv) == -1)
 		return (1);
 	init_display(&cub);
+	return (0);
 }

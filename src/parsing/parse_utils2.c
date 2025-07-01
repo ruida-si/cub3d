@@ -6,7 +6,7 @@
 /*   By: gribeiro <gribeiro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/19 18:52:55 by gribeiro          #+#    #+#             */
-/*   Updated: 2025/06/30 17:01:46 by gribeiro         ###   ########.fr       */
+/*   Updated: 2025/07/01 12:29:06 by gribeiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,7 +120,7 @@ char	*new_lines(char *str)
 	i = 0;
 	j = 0;
 	size = ft_strlen(str);
-	tmp = calloc (sizeof(char), (size + 1));
+	tmp = ft_calloc (sizeof(char), (size + 1));
 	while (str[i])
 	{
 		if (str[i] == 13)
